@@ -83,8 +83,8 @@ export default function ReportsPage({ params }: { params: { id: string } }) {
   // Channel breakdown for chart
   const channelData = [
     { label: "Google LSA", value: Math.round(clientLeadsThisMonth.filter(l => l.source === "lsa").length) },
-    { label: "Google Ads", value: Math.round(clientLeadsThisMonth.filter(l => l.source === "ads").length) },
-    { label: "Organic SEO", value: Math.round(clientLeadsThisMonth.filter(l => l.source === "seo").length) },
+    { label: "Google Ads", value: Math.round(clientLeadsThisMonth.filter(l => l.source === "google_ads").length) },
+    { label: "Organic SEO", value: Math.round(clientLeadsThisMonth.filter(l => l.source === "organic").length) },
     { label: "GBP / Maps", value: metrics.gbpCalls },
     { label: "Referral", value: Math.round(clientLeadsThisMonth.filter(l => l.source === "referral").length) },
   ];

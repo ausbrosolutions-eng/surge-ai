@@ -3,7 +3,8 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { ArrowRight, CheckCircle, Loader2 } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
+import SnapshotResult, { type SnapshotData } from "./SnapshotResult";
 
 const revenueOptions = [
   "Under $500k/year",
@@ -39,6 +40,14 @@ interface FormErrors {
   biggestChallenge?: string;
 }
 
+const BENEFIT_LIST = [
+  "Your top revenue gap identified",
+  "Your market's competitive landscape",
+  "Top 3 marketing channels for your trade and city",
+  "One action you can take this week",
+  "Option to book a free Blueprint review call",
+];
+
 export default function FinalCTA() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -52,7 +61,7 @@ export default function FinalCTA() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [snapshot, setSnapshot] = useState<SnapshotData | null>(null);
   const [submitError, setSubmitError] = useState("");
 
   const validate = (): FormErrors => {
@@ -88,7 +97,7 @@ export default function FinalCTA() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Submission failed");
-      setIsSuccess(true);
+      setSnapshot(data.snapshot as SnapshotData);
     } catch (err) {
       setSubmitError(
         err instanceof Error ? err.message : "Something went wrong. Please try again."
@@ -137,24 +146,24 @@ export default function FinalCTA() {
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight mb-5">
               Ready to know exactly{" "}
-              <span className="gradient-text">where you're going?</span>
+              <span className="gradient-text">where you&rsquo;re going?</span>
             </h2>
             <p className="text-gray-500 dark:text-white/50 text-lg leading-relaxed mb-8">
-              Fill in the form and we'll build your free Blueprint Snapshot — a personalized look at your biggest growth gap and what to do about it. 60 seconds. Yours to keep.
+              Fill in the form and we&rsquo;ll build your free Blueprint Snapshot — a
+              personalized look at your biggest growth gap and what to do about
+              it. 60 seconds. Yours to keep.
             </p>
 
             {/* What you'll get */}
             <div className="space-y-3.5">
-              {[
-                "Your top revenue gap identified",
-                "Your market's competitive landscape",
-                "Top 3 marketing channels for your trade and city",
-                "One action you can take this week",
-                "Option to book a free Blueprint review call",
-              ].map((item) => (
+              {BENEFIT_LIST.map((item) => (
                 <div key={item} className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                  <span className="text-sm text-gray-600 dark:text-white/60">{item}</span>
+                  <div className="w-5 h-5 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                  </div>
+                  <span className="text-sm text-gray-600 dark:text-white/60">
+                    {item}
+                  </span>
                 </div>
               ))}
             </div>
@@ -166,44 +175,23 @@ export default function FinalCTA() {
             </p>
           </motion.div>
 
-          {/* Right: Form */}
+          {/* Right: Form or Snapshot Result */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
             className="relative"
           >
-            <div className="p-8 rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.03] shadow-xl shadow-black/5">
-              {isSuccess ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-8"
-                >
-                  <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center mx-auto mb-5">
-                    <CheckCircle className="w-8 h-8 text-blue-400" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                    You're in! 🤙
-                  </h3>
-                  <p className="text-gray-500 dark:text-white/50 text-sm leading-relaxed">
-                    We'll review your business and send your Blueprint Snapshot shortly. Check your inbox — and your spam folder just in case.
-                  </p>
-                  <div className="mt-6 p-4 rounded-xl bg-blue-500/5 border border-blue-500/10">
-                    <p className="text-sm text-blue-400 font-medium">
-                      Want to move faster? Book a call directly →
-                    </p>
-                    <a
-                      href="#"
-                      className="mt-2 inline-block text-sm text-blue-500 hover:text-blue-400 underline underline-offset-4"
-                    >
-                      Schedule a 30-min Strategy Call
-                    </a>
-                  </div>
-                </motion.div>
+            <div className="p-6 sm:p-8 rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.03] shadow-xl shadow-black/5">
+              {snapshot ? (
+                <SnapshotResult
+                  snapshot={snapshot}
+                  name={form.name}
+                  company={form.company}
+                />
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-                  <div className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                  <div className="text-lg font-bold text-gray-900 dark:text-white mb-1">
                     Build My Free Blueprint Snapshot
                   </div>
                   <p className="text-sm text-gray-400 dark:text-white/30 mb-5">
@@ -220,11 +208,15 @@ export default function FinalCTA() {
                         type="text"
                         placeholder="Scott Miller"
                         value={form.name}
-                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                        onChange={(e) =>
+                          setForm({ ...form, name: e.target.value })
+                        }
                         className={inputClass("name")}
                       />
                       {errors.name && (
-                        <p className="mt-1 text-xs text-red-400">{errors.name}</p>
+                        <p className="mt-1 text-xs text-red-400">
+                          {errors.name}
+                        </p>
                       )}
                     </div>
                     <div>
@@ -235,11 +227,15 @@ export default function FinalCTA() {
                         type="email"
                         placeholder="scott@yourbusiness.com"
                         value={form.email}
-                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                        onChange={(e) =>
+                          setForm({ ...form, email: e.target.value })
+                        }
                         className={inputClass("email")}
                       />
                       {errors.email && (
-                        <p className="mt-1 text-xs text-red-400">{errors.email}</p>
+                        <p className="mt-1 text-xs text-red-400">
+                          {errors.email}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -253,11 +249,15 @@ export default function FinalCTA() {
                       type="text"
                       placeholder="Rehab Restoration"
                       value={form.company}
-                      onChange={(e) => setForm({ ...form, company: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, company: e.target.value })
+                      }
                       className={inputClass("company")}
                     />
                     {errors.company && (
-                      <p className="mt-1 text-xs text-red-400">{errors.company}</p>
+                      <p className="mt-1 text-xs text-red-400">
+                        {errors.company}
+                      </p>
                     )}
                   </div>
 
@@ -268,7 +268,9 @@ export default function FinalCTA() {
                     </label>
                     <select
                       value={form.monthlyRevenue}
-                      onChange={(e) => setForm({ ...form, monthlyRevenue: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, monthlyRevenue: e.target.value })
+                      }
                       className={inputClass("monthlyRevenue")}
                     >
                       <option value="" disabled>
@@ -281,7 +283,9 @@ export default function FinalCTA() {
                       ))}
                     </select>
                     {errors.monthlyRevenue && (
-                      <p className="mt-1 text-xs text-red-400">{errors.monthlyRevenue}</p>
+                      <p className="mt-1 text-xs text-red-400">
+                        {errors.monthlyRevenue}
+                      </p>
                     )}
                   </div>
 
@@ -292,7 +296,9 @@ export default function FinalCTA() {
                     </label>
                     <select
                       value={form.biggestChallenge}
-                      onChange={(e) => setForm({ ...form, biggestChallenge: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, biggestChallenge: e.target.value })
+                      }
                       className={inputClass("biggestChallenge")}
                     >
                       <option value="" disabled>
@@ -305,7 +311,9 @@ export default function FinalCTA() {
                       ))}
                     </select>
                     {errors.biggestChallenge && (
-                      <p className="mt-1 text-xs text-red-400">{errors.biggestChallenge}</p>
+                      <p className="mt-1 text-xs text-red-400">
+                        {errors.biggestChallenge}
+                      </p>
                     )}
                   </div>
 
