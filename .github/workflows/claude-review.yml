@@ -1,0 +1,28 @@
+name: Claude PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [main]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          direct_prompt: |
+            Review this pull request for the Surge AI Next.js app. Focus on:
+
+            1. **Next.js 14 compatibility** — check for any use of `use(params)` (should be `params.id` directly)
+            2. **TypeScript** — flag any `any` types or missing type annotations
+            3. **Tailwind classes** — ensure `blue-*` classes are used intentionally (they resolve to teal in this project)
+            4. **State management** — if lib/store.ts was modified, confirm lib/types.ts was updated too
+            5. **Component size** — flag components over ~300 lines that should be split
+            6. **No new dependencies** — flag any new entries in package.json
+
+            Post a clear, concise review. Be direct — this is a founder-led project, not a committee.

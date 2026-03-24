@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "marketing-agency",
+      "runtimeExecutable": "/Users/austin/.nvm/versions/node/v22.22.1/bin/node",
+      "runtimeArgs": ["/Users/austin/Marketing Agency/node_modules/.bin/next", "dev", "--port", "3001"],
+      "port": 3001
+    }
+  ]
+}
