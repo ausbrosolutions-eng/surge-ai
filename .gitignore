@@ -36,3 +36,6 @@ yarn-error.log*
 .idea/
 *.swp
 *.swo
+
+# Claude local settings (contains API keys)
+.claude/settings.local.json
