@@ -80,6 +80,34 @@
 }
 
 @layer utilities {
+  /* Section background utilities */
+  .section-light {
+    background-color: #F8F7F4;
+  }
+
+  .section-dark {
+    background-color: #0A1628;
+  }
+
+  /* Solid card with subtle shadow */
+  .card-solid {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Shimmer animation for skeleton loading */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.04) 25%,
+      rgba(0, 0, 0, 0.08) 50%,
+      rgba(0, 0, 0, 0.04) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
   /* Deep ocean hero gradient */
   .gradient-hero {
     background: linear-gradient(
@@ -174,7 +202,7 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(60px);
-  opacity: 0.15;
+  opacity: 0.08;
   animation: float 8s ease-in-out infinite;
 }
 
@@ -185,6 +213,15 @@
   }
   50% {
     transform: translateY(-20px) scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }
 

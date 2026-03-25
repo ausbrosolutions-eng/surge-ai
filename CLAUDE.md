@@ -677,3 +677,33 @@ lib/
 - Clear description of what changed and why
 - Test all dashboard routes after store changes
 - Keep components under ~300 lines — split if larger
+
+---
+
+## Code & Copy Voice
+
+### Writing Style
+- **Active voice, specific language** — not "manage clients" but "track Angi leads from first call to booked job"
+- **Use real numbers** — not "increase revenue" but "add $174K/yr in recurring revenue"
+- **Trade jargon where appropriate** — LSA, GBP, booking rate, CPL, Map Pack. Clients speak this language
+- **Error messages must be real** — never "An error occurred." Say "Couldn't load client data — check your connection and try again."
+- **Button copy = outcome** — not "Submit" but "Get My Blueprint" / not "Save" but "Save Changes"
+
+### Code Style
+- **Clarity over cleverness** — readable in 6 months by someone who didn't write it
+- **Name things after outcomes** — `BookedLeadsChart` not `DataViz3`, `ReviewRequestModal` not `FormModal`
+- **Comment the WHY, not the WHAT** — `// Mark lead as booked to train LSA algorithm` not `// sets value to true`
+- **Prefer explicit state** — `isSubmitting`, `hasError`, `showSnapshot` over vague booleans
+- **Realistic seed data** — use real-sounding business names, actual service types, plausible metrics
+
+### UI & Design Voice
+- Animations: **subtle and purposeful** — entrance fades, hover lifts. Never decorative spinning or bouncing
+- Trust signals above the fold — review stars, years in business, license info visible without scrolling
+- Forms: **inline validation**, no surprise errors after submit
+- Mobile first — every CTA clickable with a thumb, phone numbers always `tel:` links
+- **Feel like a real startup**, not a design system showcase — intentional imperfections welcome
+
+### Tone
+- Direct and confident — this agency has 30+ years of home service expertise baked in
+- Avoid hedging language ("might," "could potentially," "it's possible that")
+- Specific > generic, always. Replace every placeholder with real content before delivering

@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
 import SnapshotResult, { type SnapshotData } from "./SnapshotResult";
 
 const revenueOptions = [
@@ -41,10 +41,10 @@ interface FormErrors {
 }
 
 const BENEFIT_LIST = [
-  "Your top revenue gap identified",
+  "Your biggest revenue gap, identified specifically",
   "Your market's competitive landscape",
   "Top 3 marketing channels for your trade and city",
-  "One action you can take this week",
+  "One concrete action you can take this week",
   "Option to book a free Blueprint review call",
 ];
 
@@ -108,27 +108,26 @@ export default function FinalCTA() {
   };
 
   const inputClass = (field: keyof FormErrors) =>
-    `w-full px-4 py-3 rounded-xl border text-sm bg-white dark:bg-white/5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/30 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 ${
+    `w-full px-4 py-3 rounded-xl border text-sm bg-white text-gray-900 placeholder-gray-400 transition-all duration-200 focus:outline-none ${
       errors[field]
-        ? "border-red-400 dark:border-red-500/50"
-        : "border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20"
+        ? "border-red-400"
+        : "border-gray-200 hover:border-gray-300"
     }`;
 
   return (
     <section
       id="contact"
-      className="py-24 sm:py-32 bg-gray-50 dark:bg-[#0b1120] relative overflow-hidden"
+      className="section-light py-24 sm:py-32 relative overflow-hidden"
     >
-      {/* Orbs */}
+      {/* Subtle orb accents — muted */}
       <div
         className="orb w-64 h-64 bg-[#00D4C8] -top-16 -left-16"
-        style={{ animationDelay: "1s" }}
+        style={{ animationDelay: "1s", opacity: "0.04" }}
       />
       <div
         className="orb w-48 h-48 bg-[#FF6B47] bottom-0 right-0"
-        style={{ animationDelay: "4s" }}
+        style={{ animationDelay: "4s", opacity: "0.04" }}
       />
-      <div className="absolute inset-0 grid-bg opacity-20" />
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
@@ -141,37 +140,29 @@ export default function FinalCTA() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-400 text-xs font-semibold uppercase tracking-widest mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0A1628]/8 text-[#0A1628] text-xs font-bold uppercase tracking-widest mb-6">
               Free Blueprint Snapshot
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight mb-5">
-              Ready to know exactly{" "}
-              <span className="gradient-text">where you&rsquo;re going?</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0A1628] leading-tight mb-4">
+              Find out exactly what&rsquo;s holding your business back.
             </h2>
-            <p className="text-gray-500 dark:text-white/50 text-lg leading-relaxed mb-8">
-              Fill in the form and we&rsquo;ll build your free Blueprint Snapshot — a
-              personalized look at your biggest growth gap and what to do about
-              it. 60 seconds. Yours to keep.
+            <p className="text-gray-500 text-lg leading-relaxed mb-8">
+              Fill out the form. In 60 seconds, we build a personalized snapshot of your biggest
+              growth gap &mdash; and the three channels most likely to fix it. Free.
             </p>
 
             {/* What you'll get */}
-            <div className="space-y-3.5">
+            <div className="space-y-3 mb-8">
               {BENEFIT_LIST.map((item) => (
-                <div key={item} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                  </div>
-                  <span className="text-sm text-gray-600 dark:text-white/60">
-                    {item}
-                  </span>
+                <div key={item} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#00D4C8] flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-gray-600">{item}</span>
                 </div>
               ))}
             </div>
 
-            <p className="mt-8 text-xs text-gray-400 dark:text-white/25">
-              Every submission reviewed personally. No automated pitch decks,
-              no offshore follow-ups. A real strategist looks at your business
-              before reaching out.
+            <p className="text-xs text-gray-400 leading-relaxed border-l-2 border-gray-200 pl-4">
+              Reviewed by a real person within 24 hours. No automated pitch. No offshore team.
             </p>
           </motion.div>
 
@@ -182,7 +173,7 @@ export default function FinalCTA() {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
             className="relative"
           >
-            <div className="p-6 sm:p-8 rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.03] shadow-xl shadow-black/5">
+            <div className="p-7 sm:p-8 rounded-2xl border border-gray-200 bg-white shadow-md">
               {snapshot ? (
                 <SnapshotResult
                   snapshot={snapshot}
@@ -191,86 +182,74 @@ export default function FinalCTA() {
                 />
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-                  <div className="text-lg font-bold text-gray-900 dark:text-white mb-1">
-                    Build My Free Blueprint Snapshot
+                  <div>
+                    <div className="text-lg font-bold text-[#0A1628] mb-0.5">
+                      Build My Free Snapshot
+                    </div>
+                    <p className="text-sm text-gray-400 mb-5">
+                      60 seconds. No credit card. Yours to keep.
+                    </p>
                   </div>
-                  <p className="text-sm text-gray-400 dark:text-white/30 mb-5">
-                    60 seconds. No credit card. Yours to keep.
-                  </p>
 
                   {/* Name + Email row */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-gray-600 dark:text-white/50 uppercase tracking-wide mb-1.5">
-                        Full Name *
+                      <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+                        Your Name *
                       </label>
                       <input
                         type="text"
                         placeholder="Scott Miller"
                         value={form.name}
-                        onChange={(e) =>
-                          setForm({ ...form, name: e.target.value })
-                        }
+                        onChange={(e) => setForm({ ...form, name: e.target.value })}
                         className={inputClass("name")}
                       />
                       {errors.name && (
-                        <p className="mt-1 text-xs text-red-400">
-                          {errors.name}
-                        </p>
+                        <p className="mt-1 text-xs text-red-400">{errors.name}</p>
                       )}
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-gray-600 dark:text-white/50 uppercase tracking-wide mb-1.5">
+                      <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
                         Business Email *
                       </label>
                       <input
                         type="email"
                         placeholder="scott@yourbusiness.com"
                         value={form.email}
-                        onChange={(e) =>
-                          setForm({ ...form, email: e.target.value })
-                        }
+                        onChange={(e) => setForm({ ...form, email: e.target.value })}
                         className={inputClass("email")}
                       />
                       {errors.email && (
-                        <p className="mt-1 text-xs text-red-400">
-                          {errors.email}
-                        </p>
+                        <p className="mt-1 text-xs text-red-400">{errors.email}</p>
                       )}
                     </div>
                   </div>
 
                   {/* Company */}
                   <div>
-                    <label className="block text-xs font-semibold text-gray-600 dark:text-white/50 uppercase tracking-wide mb-1.5">
+                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
                       Business Name *
                     </label>
                     <input
                       type="text"
-                      placeholder="Rehab Restoration"
+                      placeholder="Miller Plumbing & Drain"
                       value={form.company}
-                      onChange={(e) =>
-                        setForm({ ...form, company: e.target.value })
-                      }
+                      onChange={(e) => setForm({ ...form, company: e.target.value })}
                       className={inputClass("company")}
                     />
                     {errors.company && (
-                      <p className="mt-1 text-xs text-red-400">
-                        {errors.company}
-                      </p>
+                      <p className="mt-1 text-xs text-red-400">{errors.company}</p>
                     )}
                   </div>
 
                   {/* Revenue */}
                   <div>
-                    <label className="block text-xs font-semibold text-gray-600 dark:text-white/50 uppercase tracking-wide mb-1.5">
+                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
                       Annual Revenue *
                     </label>
                     <select
                       value={form.monthlyRevenue}
-                      onChange={(e) =>
-                        setForm({ ...form, monthlyRevenue: e.target.value })
-                      }
+                      onChange={(e) => setForm({ ...form, monthlyRevenue: e.target.value })}
                       className={inputClass("monthlyRevenue")}
                     >
                       <option value="" disabled>
@@ -283,15 +262,13 @@ export default function FinalCTA() {
                       ))}
                     </select>
                     {errors.monthlyRevenue && (
-                      <p className="mt-1 text-xs text-red-400">
-                        {errors.monthlyRevenue}
-                      </p>
+                      <p className="mt-1 text-xs text-red-400">{errors.monthlyRevenue}</p>
                     )}
                   </div>
 
                   {/* Challenge */}
                   <div>
-                    <label className="block text-xs font-semibold text-gray-600 dark:text-white/50 uppercase tracking-wide mb-1.5">
+                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
                       Biggest Challenge Right Now *
                     </label>
                     <select
@@ -311,15 +288,13 @@ export default function FinalCTA() {
                       ))}
                     </select>
                     {errors.biggestChallenge && (
-                      <p className="mt-1 text-xs text-red-400">
-                        {errors.biggestChallenge}
-                      </p>
+                      <p className="mt-1 text-xs text-red-400">{errors.biggestChallenge}</p>
                     )}
                   </div>
 
                   {/* Submit error */}
                   {submitError && (
-                    <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-sm text-red-400">
+                    <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-sm text-red-600">
                       {submitError}
                     </div>
                   )}
@@ -328,7 +303,7 @@ export default function FinalCTA() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-[#FF6B47] hover:bg-[#FF8B6B] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-[#FF6B47]/30 hover:-translate-y-0.5 mt-2"
+                    className="w-full flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-[#FF6B47] hover:bg-[#FF8B6B] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-[#FF6B47]/25 hover:-translate-y-0.5 mt-2"
                   >
                     {isSubmitting ? (
                       <>
@@ -343,7 +318,7 @@ export default function FinalCTA() {
                     )}
                   </button>
 
-                  <p className="text-center text-xs text-gray-400 dark:text-white/25 mt-2">
+                  <p className="text-center text-xs text-gray-400 mt-2">
                     No spam. No commitment. Unsubscribe anytime.
                   </p>
                 </form>

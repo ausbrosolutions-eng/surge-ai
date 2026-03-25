@@ -7,8 +7,8 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { label: "How It Works", href: "#how-it-works" },
-  { label: "Services", href: "#services" },
   { label: "Results", href: "#results" },
+  { label: "Pricing", href: "#services" },
   { label: "FAQ", href: "#faq" },
 ];
 
@@ -31,7 +31,7 @@ export default function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled
-            ? "bg-navy-950/95 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/20"
+            ? "bg-[#0A1628]/95 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/20"
             : "bg-transparent"
         )}
       >
@@ -39,12 +39,12 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <a href="/" className="flex items-center gap-2.5 group">
-              <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center glow-teal group-hover:scale-105 transition-transform">
-                <Waves className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 rounded-lg bg-[#00D4C8] flex items-center justify-center group-hover:scale-105 transition-transform">
+                <Waves className="w-4 h-4 text-[#0A1628]" />
               </div>
               <span className="font-bold text-white text-lg tracking-tight">
                 Surge{" "}
-                <span className="text-blue-400 font-semibold">AI</span>
+                <span className="text-[#00D4C8] font-semibold">AI</span>
               </span>
             </a>
 
@@ -57,13 +57,16 @@ export default function Navbar() {
                   className="text-sm font-medium text-white/70 hover:text-white transition-colors duration-200 relative group"
                 >
                   {link.label}
-                  <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-blue-400 group-hover:w-full transition-all duration-300" />
+                  <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[#00D4C8] group-hover:w-full transition-all duration-300" />
                 </a>
               ))}
             </nav>
 
             {/* Desktop CTA */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-4">
+              <span className="text-xs text-white/30 font-medium">
+                214 contractors served
+              </span>
               <a
                 href="#contact"
                 className="px-5 py-2.5 rounded-lg bg-[#FF6B47] hover:bg-[#FF8B6B] text-white text-sm font-semibold transition-all duration-200 hover:shadow-lg hover:shadow-[#FF6B47]/30 hover:-translate-y-0.5"
@@ -96,7 +99,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-16 z-40 bg-navy-950/98 backdrop-blur-md border-b border-white/10 md:hidden"
+            className="fixed inset-x-0 top-16 z-40 bg-[#0A1628]/98 backdrop-blur-md border-b border-white/10 md:hidden"
           >
             <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
