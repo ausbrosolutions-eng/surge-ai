@@ -53,6 +53,7 @@ const mainNav = [
   { href: "/dashboard/tasks", icon: CheckSquare, label: "Tasks" },
   { href: "/dashboard/proposals", icon: FileText, label: "Proposals" },
   { href: "/dashboard/contracts", icon: FileSignature, label: "Contracts & SOW" },
+  { href: "/dashboard/outreach", icon: Target, label: "Cold Outreach" },
   { href: "/dashboard/onboarding", icon: PlusCircle, label: "New Client" },
   { href: "/dashboard/knowledge", icon: BookOpen, label: "Knowledge Base" },
 ];

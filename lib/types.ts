@@ -234,6 +234,20 @@ export interface ReviewPlatformStats {
   lastUpdated: string;
 }
 
+export interface OutreachProspect {
+  id: string;
+  name: string;
+  company: string;
+  trade: string;
+  city: string;
+  phone: string;
+  source: "Instagram" | "Cold Email" | "Referral" | "Other";
+  status: "New" | "Contacted" | "Replied" | "Call Booked" | "Closed" | "Not Interested";
+  notes: string;
+  nextFollowUp: string; // ISO date string
+  createdAt: string; // ISO date string
+}
+
 // Store shape
 export interface AgencyStore {
   clients: Client[];
@@ -248,5 +262,6 @@ export interface AgencyStore {
   backlinks: BacklinkEntry[];
   contentGaps: Record<string, ContentGap[]>;
   reviewStats: Record<string, ReviewPlatformStats[]>;
+  outreach: OutreachProspect[];
   initialized: boolean;
 }

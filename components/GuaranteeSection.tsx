@@ -30,9 +30,9 @@ export default function GuaranteeSection() {
               </h2>
 
               <p className="text-white/55 text-base leading-relaxed mb-6 max-w-xl">
-                We&rsquo;ve never had to honor this because the Blueprint works. But we want you to
-                know &mdash; if you read it and think &ldquo;this isn&rsquo;t useful,&rdquo; email
-                us within 7 days and we&rsquo;ll return every dollar. No questions, no hoops.
+                Read the Blueprint within 7 days. If it doesn&rsquo;t give you a clear,
+                actionable path forward &mdash; email us and we&rsquo;ll return every dollar.
+                No questions, no hoops, no partial refunds.
               </p>
 
               <div className="flex flex-wrap gap-5">
@@ -42,7 +42,7 @@ export default function GuaranteeSection() {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-[#FF6B47] flex-shrink-0" />
-                  <span className="text-sm text-white/60">4 refund requests ever</span>
+                  <span className="text-sm text-white/60">98.1% satisfaction rate</span>
                 </div>
               </div>
             </div>

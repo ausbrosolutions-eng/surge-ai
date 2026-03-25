@@ -14,6 +14,7 @@ import type {
   BacklinkEntry,
   ContentGap,
   ReviewPlatformStats,
+  OutreachProspect,
 } from "./types";
 import {
   seedClient,
@@ -40,6 +41,7 @@ const KEYS = {
   backlinks: "blueprint_backlinks",
   contentGaps: "blueprint_content_gaps",
   reviewStats: "blueprint_review_stats",
+  outreach: "blueprint_outreach",
   initialized: "blueprint_initialized",
 };
 
@@ -91,6 +93,7 @@ function initializeStore() {
     lsSet(KEYS.backlinks, []);
     lsSet(KEYS.contentGaps, contentGaps);
     lsSet(KEYS.reviewStats, reviewStats);
+    lsSet(KEYS.outreach, []);
     lsSet(KEYS.initialized, true);
   }
 }
@@ -110,6 +113,7 @@ export function useStore() {
     backlinks: [],
     contentGaps: {},
     reviewStats: {},
+    outreach: [],
     initialized: false,
   });
 
@@ -128,6 +132,7 @@ export function useStore() {
       backlinks: ls<BacklinkEntry[]>(KEYS.backlinks, []),
       contentGaps: ls<Record<string, ContentGap[]>>(KEYS.contentGaps, {}),
       reviewStats: ls<Record<string, ReviewPlatformStats[]>>(KEYS.reviewStats, {}),
+      outreach: ls<OutreachProspect[]>(KEYS.outreach, []),
       initialized: true,
     });
   }, []);
@@ -336,6 +341,29 @@ export function useStore() {
     [loadStore]
   );
 
+  // ── Outreach ───────────────────────────────────────────────
+  const saveOutreachProspect = useCallback(
+    (prospect: OutreachProspect) => {
+      const prospects = ls<OutreachProspect[]>(KEYS.outreach, []);
+      const idx = prospects.findIndex((p) => p.id === prospect.id);
+      const next =
+        idx >= 0
+          ? prospects.map((p) => (p.id === prospect.id ? prospect : p))
+          : [...prospects, prospect];
+      lsSet(KEYS.outreach, next);
+      loadStore();
+    },
+    [loadStore]
+  );
+
+  const deleteOutreachProspect = useCallback(
+    (id: string) => {
+      lsSet(KEYS.outreach, ls<OutreachProspect[]>(KEYS.outreach, []).filter((p) => p.id !== id));
+      loadStore();
+    },
+    [loadStore]
+  );
+
   // ── Export ─────────────────────────────────────────────────
   const exportData = useCallback(() => {
     const data = {
@@ -375,6 +403,8 @@ export function useStore() {
     updateCitation,
     updateContentGap,
     updateReviewStats,
+    saveOutreachProspect,
+    deleteOutreachProspect,
     exportData,
     refresh: loadStore,
   };

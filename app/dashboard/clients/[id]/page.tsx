@@ -7,6 +7,7 @@ import {
   MapPin, Phone, Mail, Globe, DollarSign, Calendar,
   Edit3, Save, X, ArrowRight, FileText,
   BarChart2, Search, Bot, Star, Megaphone, Share2, ShieldCheck, Sparkles,
+  MessageSquare, BookOpen, Copy, Check, Loader2, ChevronDown, ChevronUp,
 } from "lucide-react";
 import { useStore } from "@/lib/store";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
@@ -46,6 +47,52 @@ export default function ClientOverviewPage() {
   const [draft, setDraft] = useState<Client | null>(null);
   const [notes, setNotes] = useState(client?.notes || "");
   const [savingNotes, setSavingNotes] = useState(false);
+
+  // AI Tasks state — one result/loading/error per task card
+  const [aiTasksOpen, setAiTasksOpen] = useState(false);
+  const [techName, setTechName] = useState("");
+  const [reportLeads, setReportLeads] = useState("");
+  const [reportCalls, setReportCalls] = useState("");
+  const [reportReviews, setReportReviews] = useState("");
+  const [blogKeyword, setBlogKeyword] = useState("");
+  const [aiResults, setAiResults] = useState<Record<string, string>>({});
+  const [aiLoading, setAiLoading] = useState<Record<string, boolean>>({});
+  const [aiErrors, setAiErrors] = useState<Record<string, string>>({});
+  const [copied, setCopied] = useState<Record<string, boolean>>({});
+
+  async function runAiTask(
+    taskType: string,
+    clientData: Record<string, string | number>
+  ) {
+    setAiLoading((prev) => ({ ...prev, [taskType]: true }));
+    setAiErrors((prev) => ({ ...prev, [taskType]: "" }));
+    try {
+      const res = await fetch("/api/ai-fulfillment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ taskType, clientData }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Generation failed");
+      setAiResults((prev) => ({ ...prev, [taskType]: data.result }));
+    } catch (err) {
+      setAiErrors((prev) => ({
+        ...prev,
+        [taskType]: err instanceof Error ? err.message : "Failed to generate. Try again.",
+      }));
+    } finally {
+      setAiLoading((prev) => ({ ...prev, [taskType]: false }));
+    }
+  }
+
+  function copyResult(taskType: string) {
+    const text = aiResults[taskType];
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied((prev) => ({ ...prev, [taskType]: true }));
+      setTimeout(() => setCopied((prev) => ({ ...prev, [taskType]: false })), 2000);
+    });
+  }
 
   const clientLeads = useMemo(
     () => store.leads.filter((l) => l.clientId === clientId).slice(-5).reverse(),
@@ -446,6 +493,281 @@ export default function ClientOverviewPage() {
             rows={5}
             className="w-full bg-gray-950 border border-gray-800 text-gray-300 text-sm rounded-lg p-3 resize-none focus:outline-none focus:border-blue-500 placeholder:text-gray-700"
           />
+        </div>
+
+        {/* AI Tasks */}
+        <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+          {/* Collapsible header */}
+          <button
+            onClick={() => setAiTasksOpen((o) => !o)}
+            className="w-full flex items-center justify-between p-5 hover:bg-gray-800/50 transition-colors"
+          >
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-rose-400" />
+              <h3 className="text-sm font-semibold text-white">AI Tasks</h3>
+              <span className="text-xs text-gray-600 ml-1">— draft content in one click</span>
+            </div>
+            {aiTasksOpen ? (
+              <ChevronUp className="w-4 h-4 text-gray-500" />
+            ) : (
+              <ChevronDown className="w-4 h-4 text-gray-500" />
+            )}
+          </button>
+
+          {aiTasksOpen && (
+            <div className="border-t border-gray-800 p-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                {/* Card 1: GBP Posts */}
+                <div className="bg-gray-950 border border-gray-800 rounded-xl p-4 flex flex-col gap-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+                      <FileText className="w-4 h-4 text-amber-400" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-white">Draft 4 GBP Posts</p>
+                      <p className="text-xs text-gray-500 mt-0.5">4 ready-to-publish posts for this month.</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() =>
+                      runAiTask("gbp-posts", {
+                        trade: client.trade.replace("_", " "),
+                        city: `${client.city}, ${client.state}`,
+                        month: new Date().toLocaleString("default", { month: "long", year: "numeric" }),
+                      })
+                    }
+                    disabled={aiLoading["gbp-posts"]}
+                    className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[#FF6B47] hover:bg-[#FF8B6B] disabled:opacity-50 text-white text-xs font-bold transition-colors"
+                  >
+                    {aiLoading["gbp-posts"] ? (
+                      <><Loader2 className="w-3.5 h-3.5 animate-spin" />Generating...</>
+                    ) : (
+                      "Generate →"
+                    )}
+                  </button>
+                  {aiErrors["gbp-posts"] && (
+                    <p className="text-xs text-red-400">{aiErrors["gbp-posts"]}</p>
+                  )}
+                  {aiResults["gbp-posts"] && (
+                    <div className="flex flex-col gap-2">
+                      <textarea
+                        readOnly
+                        value={aiResults["gbp-posts"]}
+                        rows={6}
+                        className="w-full bg-gray-900 border border-gray-700 text-gray-300 text-xs rounded-lg p-3 resize-none focus:outline-none"
+                      />
+                      <button
+                        onClick={() => copyResult("gbp-posts")}
+                        className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white self-end transition-colors"
+                      >
+                        {copied["gbp-posts"] ? (
+                          <><Check className="w-3.5 h-3.5 text-emerald-400" />Copied!</>
+                        ) : (
+                          <><Copy className="w-3.5 h-3.5" />Copy</>
+                        )}
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Card 2: Review Request SMS */}
+                <div className="bg-gray-950 border border-gray-800 rounded-xl p-4 flex flex-col gap-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-[#00D4C8]/10 flex items-center justify-center flex-shrink-0">
+                      <MessageSquare className="w-4 h-4 text-[#00D4C8]" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-white">Write Review Request SMS</p>
+                      <p className="text-xs text-gray-500 mt-0.5">3 SMS templates for post-job review requests.</p>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs text-gray-500 mb-1">Technician Name</label>
+                    <input
+                      className="w-full bg-gray-900 border border-gray-700 text-gray-200 text-xs rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 placeholder:text-gray-600"
+                      placeholder="e.g. Jake"
+                      value={techName}
+                      onChange={(e) => setTechName(e.target.value)}
+                    />
+                  </div>
+                  <button
+                    onClick={() =>
+                      runAiTask("review-sms", {
+                        trade: client.trade.replace("_", " "),
+                        techName: techName || "your technician",
+                      })
+                    }
+                    disabled={aiLoading["review-sms"]}
+                    className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[#FF6B47] hover:bg-[#FF8B6B] disabled:opacity-50 text-white text-xs font-bold transition-colors"
+                  >
+                    {aiLoading["review-sms"] ? (
+                      <><Loader2 className="w-3.5 h-3.5 animate-spin" />Generating...</>
+                    ) : (
+                      "Generate →"
+                    )}
+                  </button>
+                  {aiErrors["review-sms"] && (
+                    <p className="text-xs text-red-400">{aiErrors["review-sms"]}</p>
+                  )}
+                  {aiResults["review-sms"] && (
+                    <div className="flex flex-col gap-2">
+                      <textarea
+                        readOnly
+                        value={aiResults["review-sms"]}
+                        rows={6}
+                        className="w-full bg-gray-900 border border-gray-700 text-gray-300 text-xs rounded-lg p-3 resize-none focus:outline-none"
+                      />
+                      <button
+                        onClick={() => copyResult("review-sms")}
+                        className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white self-end transition-colors"
+                      >
+                        {copied["review-sms"] ? (
+                          <><Check className="w-3.5 h-3.5 text-emerald-400" />Copied!</>
+                        ) : (
+                          <><Copy className="w-3.5 h-3.5" />Copy</>
+                        )}
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Card 3: Monthly Report Summary */}
+                <div className="bg-gray-950 border border-gray-800 rounded-xl p-4 flex flex-col gap-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+                      <BarChart2 className="w-4 h-4 text-blue-400" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-white">Monthly Report Summary</p>
+                      <p className="text-xs text-gray-500 mt-0.5">2-paragraph narrative for your client report.</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2">
+                    {[
+                      { label: "Leads", value: reportLeads, setter: setReportLeads },
+                      { label: "Calls", value: reportCalls, setter: setReportCalls },
+                      { label: "Reviews", value: reportReviews, setter: setReportReviews },
+                    ].map(({ label, value, setter }) => (
+                      <div key={label}>
+                        <label className="block text-xs text-gray-500 mb-1">{label}</label>
+                        <input
+                          type="number"
+                          className="w-full bg-gray-900 border border-gray-700 text-gray-200 text-xs rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 placeholder:text-gray-600"
+                          placeholder="0"
+                          value={value}
+                          onChange={(e) => setter(e.target.value)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() =>
+                      runAiTask("monthly-report", {
+                        clientName: client.businessName,
+                        leads: reportLeads || "0",
+                        calls: reportCalls || "0",
+                        reviews: reportReviews || "0",
+                      })
+                    }
+                    disabled={aiLoading["monthly-report"]}
+                    className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[#FF6B47] hover:bg-[#FF8B6B] disabled:opacity-50 text-white text-xs font-bold transition-colors"
+                  >
+                    {aiLoading["monthly-report"] ? (
+                      <><Loader2 className="w-3.5 h-3.5 animate-spin" />Generating...</>
+                    ) : (
+                      "Generate →"
+                    )}
+                  </button>
+                  {aiErrors["monthly-report"] && (
+                    <p className="text-xs text-red-400">{aiErrors["monthly-report"]}</p>
+                  )}
+                  {aiResults["monthly-report"] && (
+                    <div className="flex flex-col gap-2">
+                      <textarea
+                        readOnly
+                        value={aiResults["monthly-report"]}
+                        rows={6}
+                        className="w-full bg-gray-900 border border-gray-700 text-gray-300 text-xs rounded-lg p-3 resize-none focus:outline-none"
+                      />
+                      <button
+                        onClick={() => copyResult("monthly-report")}
+                        className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white self-end transition-colors"
+                      >
+                        {copied["monthly-report"] ? (
+                          <><Check className="w-3.5 h-3.5 text-emerald-400" />Copied!</>
+                        ) : (
+                          <><Copy className="w-3.5 h-3.5" />Copy</>
+                        )}
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Card 4: Blog Post Outline */}
+                <div className="bg-gray-950 border border-gray-800 rounded-xl p-4 flex flex-col gap-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0">
+                      <BookOpen className="w-4 h-4 text-purple-400" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-white">Blog Post Outline</p>
+                      <p className="text-xs text-gray-500 mt-0.5">Full SEO outline for a target keyword.</p>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs text-gray-500 mb-1">Target Keyword</label>
+                    <input
+                      className="w-full bg-gray-900 border border-gray-700 text-gray-200 text-xs rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 placeholder:text-gray-600"
+                      placeholder="e.g. furnace repair Dallas"
+                      value={blogKeyword}
+                      onChange={(e) => setBlogKeyword(e.target.value)}
+                    />
+                  </div>
+                  <button
+                    onClick={() =>
+                      runAiTask("blog-outline", {
+                        trade: client.trade.replace("_", " "),
+                        keyword: blogKeyword || `${client.trade.replace("_", " ")} ${client.city}`,
+                      })
+                    }
+                    disabled={aiLoading["blog-outline"]}
+                    className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[#FF6B47] hover:bg-[#FF8B6B] disabled:opacity-50 text-white text-xs font-bold transition-colors"
+                  >
+                    {aiLoading["blog-outline"] ? (
+                      <><Loader2 className="w-3.5 h-3.5 animate-spin" />Generating...</>
+                    ) : (
+                      "Generate →"
+                    )}
+                  </button>
+                  {aiErrors["blog-outline"] && (
+                    <p className="text-xs text-red-400">{aiErrors["blog-outline"]}</p>
+                  )}
+                  {aiResults["blog-outline"] && (
+                    <div className="flex flex-col gap-2">
+                      <textarea
+                        readOnly
+                        value={aiResults["blog-outline"]}
+                        rows={6}
+                        className="w-full bg-gray-900 border border-gray-700 text-gray-300 text-xs rounded-lg p-3 resize-none focus:outline-none"
+                      />
+                      <button
+                        onClick={() => copyResult("blog-outline")}
+                        className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white self-end transition-colors"
+                      >
+                        {copied["blog-outline"] ? (
+                          <><Check className="w-3.5 h-3.5 text-emerald-400" />Copied!</>
+                        ) : (
+                          <><Copy className="w-3.5 h-3.5" />Copy</>
+                        )}
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+              </div>
+            </div>
+          )}
         </div>
       </main>
     </div>
