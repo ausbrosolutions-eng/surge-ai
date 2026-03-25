@@ -57,13 +57,13 @@ export default function SnapshotResult({
     >
       {/* Header */}
       <div className="text-center pb-1">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-widest mb-3">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00D4C8]/10 border border-[#00D4C8]/25 text-[#008F8A] text-xs font-semibold uppercase tracking-widest mb-3">
           Blueprint Snapshot — {company}
         </div>
-        <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-snug">
+        <h3 className="text-lg font-bold text-gray-900 leading-snug">
           {firstName}, here&rsquo;s what we found
         </h3>
-        <p className="text-sm text-gray-400 dark:text-white/30 mt-1">
+        <p className="text-sm text-gray-500 mt-1">
           Personalized for your business. Not a template.
         </p>
       </div>
@@ -73,20 +73,20 @@ export default function SnapshotResult({
         initial={{ opacity: 0, x: -10 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.1, duration: 0.4 }}
-        className="p-4 rounded-xl bg-blue-500/5 border border-blue-500/20"
+        className="p-4 rounded-xl bg-[#00D4C8]/8 border border-[#00D4C8]/25"
       >
         <div className="flex items-start gap-3">
-          <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-            <TrendingUp className="w-4 h-4 text-blue-400" />
+          <div className="w-8 h-8 rounded-lg bg-[#00D4C8]/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <TrendingUp className="w-4 h-4 text-[#008F8A]" />
           </div>
-          <div>
-            <div className="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-1">
+          <div className="flex-1 min-w-0">
+            <div className="text-xs font-semibold text-[#008F8A] uppercase tracking-wider mb-1">
               Your #1 Revenue Gap
             </div>
-            <div className="text-sm font-bold text-gray-900 dark:text-white mb-1.5">
+            <div className="text-sm font-bold text-gray-900 mb-1.5">
               {snapshot.revenueGap.title}
             </div>
-            <p className="text-xs text-gray-500 dark:text-white/50 leading-relaxed">
+            <p className="text-sm text-gray-600 leading-relaxed">
               {snapshot.revenueGap.description}
             </p>
           </div>
@@ -99,17 +99,17 @@ export default function SnapshotResult({
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2, duration: 0.4 }}
       >
-        <div className="text-xs font-semibold text-gray-400 dark:text-white/30 uppercase tracking-wider mb-2">
+        <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
           Top 3 Channels — Ranked by ROI for You
         </div>
         <div className="space-y-2">
           {snapshot.topChannels.map((channel) => (
             <div
               key={channel.rank}
-              className="flex items-start gap-3 p-3 rounded-xl border border-gray-100 dark:border-white/[0.06] bg-white dark:bg-white/[0.02]"
+              className="flex items-start gap-3 p-3 rounded-xl border border-gray-200 bg-white"
             >
               <div
-                className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold text-white mt-0.5"
+                className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold text-white mt-0.5"
                 style={{
                   backgroundColor: RANK_COLORS[channel.rank - 1] ?? "#666",
                 }}
@@ -117,12 +117,12 @@ export default function SnapshotResult({
                 {channel.rank}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between gap-2 flex-wrap">
-                  <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                <div className="flex flex-col gap-1">
+                  <span className="text-sm font-semibold text-gray-900 leading-tight">
                     {channel.name}
                   </span>
                   <span
-                    className="text-xs font-semibold px-2 py-0.5 rounded-full whitespace-nowrap"
+                    className="text-xs font-semibold px-2 py-0.5 rounded-full self-start"
                     style={{
                       color: RANK_COLORS[channel.rank - 1] ?? "#666",
                       backgroundColor: `${RANK_COLORS[channel.rank - 1] ?? "#666"}18`,
@@ -131,7 +131,7 @@ export default function SnapshotResult({
                     {channel.expectedResult}
                   </span>
                 </div>
-                <p className="text-xs text-gray-400 dark:text-white/40 mt-0.5 leading-relaxed">
+                <p className="text-sm text-gray-600 mt-1.5 leading-relaxed">
                   {channel.reason}
                 </p>
               </div>
@@ -145,20 +145,20 @@ export default function SnapshotResult({
         initial={{ opacity: 0, x: -10 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3, duration: 0.4 }}
-        className="p-4 rounded-xl bg-[#FF6B47]/5 border border-[#FF6B47]/20"
+        className="p-4 rounded-xl bg-[#FF6B47]/8 border border-[#FF6B47]/25"
       >
         <div className="flex items-start gap-3">
-          <div className="w-8 h-8 rounded-lg bg-[#FF6B47]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <div className="w-8 h-8 rounded-lg bg-[#FF6B47]/15 flex items-center justify-center flex-shrink-0 mt-0.5">
             <Zap className="w-4 h-4 text-[#FF6B47]" />
           </div>
-          <div>
+          <div className="flex-1 min-w-0">
             <div className="text-xs font-semibold text-[#FF6B47] uppercase tracking-wider mb-1">
               Do This This Week
             </div>
-            <div className="text-sm font-bold text-gray-900 dark:text-white mb-1.5">
+            <div className="text-sm font-bold text-gray-900 mb-1.5">
               {snapshot.weekAction.title}
             </div>
-            <p className="text-xs text-gray-500 dark:text-white/50 leading-relaxed">
+            <p className="text-sm text-gray-600 leading-relaxed">
               {snapshot.weekAction.description}
             </p>
           </div>
@@ -170,26 +170,26 @@ export default function SnapshotResult({
         initial={{ opacity: 0, x: -10 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.4, duration: 0.4 }}
-        className="relative rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden"
+        className="relative rounded-xl border border-gray-200 bg-white overflow-hidden"
       >
         <div className="p-4">
           <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-white/5 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <Target className="w-4 h-4 text-gray-300 dark:text-white/20" />
+            <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <Target className="w-4 h-4 text-gray-300" />
             </div>
-            <div className="flex-1">
-              <div className="text-xs font-semibold text-gray-300 dark:text-white/20 uppercase tracking-wider mb-1">
+            <div className="flex-1 min-w-0">
+              <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">
                 Your Competitive Blind Spot
               </div>
-              <p className="text-sm text-gray-400 dark:text-white/20 blur-sm select-none leading-relaxed">
+              <p className="text-sm text-gray-400 blur-sm select-none leading-relaxed">
                 {snapshot.blindSpot}
               </p>
             </div>
           </div>
         </div>
-        {/* Frosted overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/70 to-white/95 dark:via-[#0b1120]/70 dark:to-[#0b1120]/98 flex items-end justify-center pb-3.5">
-          <div className="flex items-center gap-1.5 text-xs text-gray-400 dark:text-white/30 font-medium">
+        {/* Light frosted overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/75 to-white flex items-end justify-center pb-4">
+          <div className="flex items-center gap-1.5 text-xs text-gray-500 font-semibold bg-white border border-gray-200 rounded-full px-3 py-1.5 shadow-sm">
             <Lock className="w-3 h-3" />
             <span>Unlocked in your full Blueprint</span>
           </div>
@@ -201,13 +201,13 @@ export default function SnapshotResult({
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.4 }}
-        className="p-4 rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.02] space-y-3"
+        className="p-4 rounded-xl border border-gray-200 bg-gray-50 space-y-3"
       >
         <div>
-          <div className="text-sm font-bold text-gray-900 dark:text-white mb-1">
+          <div className="text-sm font-bold text-gray-900 mb-1">
             This is just the surface.
           </div>
-          <p className="text-xs text-gray-500 dark:text-white/40 leading-relaxed">
+          <p className="text-sm text-gray-600 leading-relaxed">
             {snapshot.fullBlueprintHint}
           </p>
         </div>
@@ -215,8 +215,8 @@ export default function SnapshotResult({
         <div className="space-y-1.5">
           {FULL_BLUEPRINT_ITEMS.map((item) => (
             <div key={item} className="flex items-center gap-2">
-              <CheckCircle className="w-3.5 h-3.5 text-blue-400 flex-shrink-0" />
-              <span className="text-xs text-gray-500 dark:text-white/40">
+              <CheckCircle className="w-3.5 h-3.5 text-[#00D4C8] flex-shrink-0" />
+              <span className="text-sm text-gray-700">
                 {item}
               </span>
             </div>
@@ -233,7 +233,7 @@ export default function SnapshotResult({
 
         <a
           href="#"
-          className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-white/10 text-gray-500 dark:text-white/50 text-sm font-semibold hover:border-blue-500/30 hover:text-blue-400 dark:hover:text-blue-400 transition-all duration-200"
+          className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl border border-gray-300 text-gray-600 text-sm font-semibold hover:border-[#00D4C8]/40 hover:text-[#008F8A] transition-all duration-200"
         >
           Book a Free 15-min Strategy Call
         </a>
