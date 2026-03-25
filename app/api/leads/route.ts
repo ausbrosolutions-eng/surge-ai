@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
 // Extend Vercel/Next.js function timeout to 30s for AI generation
@@ -7,6 +8,146 @@ export const maxDuration = 30;
 const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+// ─── Email HTML Template ─────────────────────────────────────────────────────
+function buildBlueprintEmail(
+  name: string,
+  company: string,
+  snapshot: {
+    revenueGap: { title: string; description: string };
+    topChannels: { rank: number; name: string; reason: string; expectedResult: string }[];
+    weekAction: { title: string; description: string };
+    blindSpot: string;
+    fullBlueprintHint: string;
+  }
+): string {
+  const firstName = name.split(" ")[0];
+  const rankColors = ["#00D4C8", "#FF6B47", "#a78bfa"];
+
+  const channelsHtml = snapshot.topChannels
+    .map(
+      (ch) => `
+      <tr>
+        <td style="padding: 14px 16px; border-bottom: 1px solid #f0f0f0; vertical-align: top;">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+              <td width="32" style="vertical-align: top; padding-top: 2px;">
+                <div style="width:28px;height:28px;border-radius:50%;background:${rankColors[ch.rank - 1] ?? "#666"};color:#fff;font-weight:700;font-size:13px;text-align:center;line-height:28px;">${ch.rank}</div>
+              </td>
+              <td style="padding-left: 12px;">
+                <div style="font-weight:700;color:#0A1628;font-size:15px;margin-bottom:2px;">${ch.name}</div>
+                <div style="display:inline-block;background:${rankColors[ch.rank - 1] ?? "#666"}18;color:${rankColors[ch.rank - 1] ?? "#666"};font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;margin-bottom:6px;">${ch.expectedResult}</div>
+                <div style="color:#555;font-size:14px;line-height:1.5;">${ch.reason}</div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>`
+    )
+    .join("");
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Blueprint Snapshot — Surge AI</title>
+</head>
+<body style="margin:0;padding:0;background:#F8F7F4;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#F8F7F4;padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;">
+
+          <!-- Header -->
+          <tr>
+            <td style="background:#0A1628;border-radius:16px 16px 0 0;padding:32px 40px 28px;">
+              <div style="color:#00D4C8;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Blueprint Snapshot — ${company}</div>
+              <div style="color:#fff;font-size:24px;font-weight:800;line-height:1.3;">${firstName}, here's what we found.</div>
+              <div style="color:rgba(255,255,255,0.5);font-size:14px;margin-top:6px;">Personalized for your business. Not a template.</div>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="background:#ffffff;padding:0 40px 8px;">
+
+              <!-- Revenue Gap -->
+              <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:28px;background:#00D4C808;border:1px solid #00D4C840;border-radius:12px;overflow:hidden;">
+                <tr>
+                  <td style="padding:18px 20px;">
+                    <div style="color:#008F8A;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Your #1 Revenue Gap</div>
+                    <div style="color:#0A1628;font-size:16px;font-weight:700;margin-bottom:8px;">${snapshot.revenueGap.title}</div>
+                    <div style="color:#444;font-size:14px;line-height:1.6;">${snapshot.revenueGap.description}</div>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Top Channels -->
+              <div style="color:#555;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin:28px 0 10px;">Top 3 Channels — Ranked by ROI for You</div>
+              <table cellpadding="0" cellspacing="0" border="0" width="100%" style="border:1px solid #eee;border-radius:12px;overflow:hidden;">
+                ${channelsHtml}
+              </table>
+
+              <!-- This Week's Action -->
+              <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:20px;background:#FF6B4708;border:1px solid #FF6B4740;border-radius:12px;overflow:hidden;">
+                <tr>
+                  <td style="padding:18px 20px;">
+                    <div style="color:#FF6B47;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Do This This Week</div>
+                    <div style="color:#0A1628;font-size:16px;font-weight:700;margin-bottom:8px;">${snapshot.weekAction.title}</div>
+                    <div style="color:#444;font-size:14px;line-height:1.6;">${snapshot.weekAction.description}</div>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Competitive Blind Spot -->
+              <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:20px;background:#a78bfa08;border:1px solid #a78bfa40;border-radius:12px;overflow:hidden;">
+                <tr>
+                  <td style="padding:18px 20px;">
+                    <div style="color:#7c3aed;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Your Competitive Blind Spot</div>
+                    <div style="color:#444;font-size:14px;line-height:1.6;">${snapshot.blindSpot}</div>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Divider -->
+              <div style="border-top:1px solid #eee;margin:28px 0;"></div>
+
+              <!-- Next Steps -->
+              <div style="color:#0A1628;font-size:16px;font-weight:700;margin-bottom:8px;">What's next?</div>
+              <div style="color:#555;font-size:14px;line-height:1.6;margin-bottom:20px;">${snapshot.fullBlueprintHint}</div>
+
+              <!-- CTA Button -->
+              <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:32px;">
+                <tr>
+                  <td align="center">
+                    <a href="https://withsurge.xyz/#contact" style="display:inline-block;background:#FF6B47;color:#fff;font-weight:700;font-size:15px;padding:14px 36px;border-radius:12px;text-decoration:none;">Book a Free 15-min Strategy Call →</a>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background:#0A1628;border-radius:0 0 16px 16px;padding:24px 40px;text-align:center;">
+              <div style="color:rgba(255,255,255,0.4);font-size:12px;line-height:1.6;">
+                Surge AI · Built for home service contractors<br/>
+                <a href="https://withsurge.xyz" style="color:#00D4C8;text-decoration:none;">withsurge.xyz</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
 
 const SYSTEM_PROMPT = `You are a senior home service marketing strategist with 30+ years of experience. You've helped hundreds of HVAC, plumbing, roofing, electrical, restoration, landscaping, pest control, and cleaning businesses grow revenue predictably.
 
@@ -109,7 +250,7 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
 
     const snapshot = JSON.parse(jsonText);
 
-    // Log the lead (replace with DB + email notification in production)
+    // Log the lead
     console.log("[LEAD]", {
       name,
       email,
@@ -118,6 +259,21 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
       biggestChallenge,
       timestamp: new Date().toISOString(),
     });
+
+    // Send blueprint email (non-blocking — don't fail the request if email fails)
+    if (process.env.RESEND_API_KEY) {
+      resend.emails
+        .send({
+          from: process.env.RESEND_FROM_EMAIL ?? "Surge AI <blueprint@withsurge.xyz>",
+          to: email,
+          subject: `${name.split(" ")[0]}, your Blueprint Snapshot is ready — ${company}`,
+          html: buildBlueprintEmail(name, company, snapshot),
+        })
+        .then(() => console.log("[EMAIL SENT]", email))
+        .catch((err: unknown) => console.error("[EMAIL ERROR]", err));
+    } else {
+      console.warn("[EMAIL SKIPPED] RESEND_API_KEY not set");
+    }
 
     return NextResponse.json({ snapshot });
   } catch (error) {
