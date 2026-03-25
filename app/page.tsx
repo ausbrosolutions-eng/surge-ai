@@ -12,7 +12,6 @@ import OfferLadder from "@/components/OfferLadder";
 import SocialProof from "@/components/SocialProof";
 import AboutSection from "@/components/AboutSection";
 import FAQ from "@/components/FAQ";
-import FreeTrialOffer from "@/components/FreeTrialOffer";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
@@ -34,8 +33,7 @@ export default function Home() {
       <SocialProof />
       <AboutSection />
       <FAQ />
-      <FreeTrialOffer />
-      <FinalCTA />
+<FinalCTA />
       <Footer />
       <StickyMobileCTA />
     </main>
