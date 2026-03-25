@@ -5,7 +5,6 @@ import {
   TrendingUp,
   Zap,
   Target,
-  Lock,
   ArrowRight,
   CheckCircle,
 } from "lucide-react";
@@ -165,33 +164,26 @@ export default function SnapshotResult({
         </div>
       </motion.div>
 
-      {/* Locked: Competitive Blind Spot */}
+      {/* Competitive Blind Spot */}
       <motion.div
         initial={{ opacity: 0, x: -10 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.4, duration: 0.4 }}
-        className="relative rounded-xl border border-gray-200 bg-white overflow-hidden"
+        className="rounded-xl border border-gray-200 bg-white"
       >
         <div className="p-4">
           <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <Target className="w-4 h-4 text-gray-300" />
+            <div className="w-8 h-8 rounded-lg bg-[#00D4C8]/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <Target className="w-4 h-4 text-[#008F8A]" />
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">
+              <div className="text-xs font-semibold text-[#008F8A] uppercase tracking-wider mb-1">
                 Your Competitive Blind Spot
               </div>
-              <p className="text-sm text-gray-400 blur-sm select-none leading-relaxed">
+              <p className="text-sm text-gray-600 leading-relaxed">
                 {snapshot.blindSpot}
               </p>
             </div>
-          </div>
-        </div>
-        {/* Light frosted overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/75 to-white flex items-end justify-center pb-4">
-          <div className="flex items-center gap-1.5 text-xs text-gray-500 font-semibold bg-white border border-gray-200 rounded-full px-3 py-1.5 shadow-sm">
-            <Lock className="w-3 h-3" />
-            <span>Unlocked in your full Blueprint</span>
           </div>
         </div>
       </motion.div>
@@ -227,15 +219,8 @@ export default function SnapshotResult({
           href="#"
           className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-[#FF6B47] hover:bg-[#FF8B6B] text-white font-bold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-[#FF6B47]/25 hover:-translate-y-0.5 mt-1"
         >
-          Get My Full Blueprint — $499
-          <ArrowRight className="w-4 h-4" />
-        </a>
-
-        <a
-          href="#"
-          className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl border border-gray-300 text-gray-600 text-sm font-semibold hover:border-[#00D4C8]/40 hover:text-[#008F8A] transition-all duration-200"
-        >
           Book a Free 15-min Strategy Call
+          <ArrowRight className="w-4 h-4" />
         </a>
       </motion.div>
     </motion.div>
