@@ -67,7 +67,7 @@ const tiers = [
       "Full-service implementation. We manage the marketing engine while you focus on operations. Every channel, fully managed, fully tied back to revenue.",
     badge: null,
     features: [
-      "Everything in Done With You",
+      "Everything is done with you",
       "Google LSA setup and management",
       "Google Ads / PPC campaign management",
       "GBP optimization and weekly posting",
