@@ -61,9 +61,9 @@ export default function Hero() {
             variants={itemVariants}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight text-balance"
           >
-            Your phone should
+            Find out what's killing
             <br />
-            ring <span className="text-[#00D4C8]">more.</span>
+            your <span className="text-[#00D4C8]">revenue.</span>
           </motion.h1>
 
           {/* Subheadline */}
