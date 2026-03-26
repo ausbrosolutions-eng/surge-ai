@@ -1,18 +1,22 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Waves } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { label: "How It Works", href: "#how-it-works" },
+  { label: "How It Works", href: "/how-it-works" },
   { label: "Results", href: "#results" },
   { label: "Pricing", href: "#services" },
-  { label: "FAQ", href: "#faq" },
+  { label: "About", href: "/about" },
+  { label: "FAQ", href: "/faq" },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -30,7 +34,7 @@ export default function Navbar() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled
+          isScrolled || !isHomePage
             ? "bg-[#0A1628]/95 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/20"
             : "bg-transparent"
         )}

@@ -4,24 +4,21 @@ import { Waves, Twitter, Linkedin, Github, Mail, ArrowRight } from "lucide-react
 
 const footerLinks = {
   Services: [
-    { label: "The Blueprint", href: "#services" },
-    { label: "The Surge Plan", href: "#services" },
-    { label: "The Full Surge", href: "#services" },
-    { label: "AI Integration Setup", href: "#services" },
+    { label: "The Blueprint", href: "/#services" },
+    { label: "Done With You", href: "/#services" },
+    { label: "Done For You", href: "/#services" },
   ],
   Company: [
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Results & Case Studies", href: "#results" },
-    { label: "FAQ", href: "#faq" },
-    { label: "About", href: "#" },
-    { label: "Contact", href: "#contact" },
+    { label: "How It Works", href: "/how-it-works" },
+    { label: "Results & Case Studies", href: "/#results" },
+    { label: "About", href: "/about" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Contact", href: "/#contact" },
   ],
   Resources: [
-    { label: "Free Blueprint Snapshot", href: "#contact" },
+    { label: "Free Blueprint Snapshot", href: "/#contact" },
     { label: "Revenue Growth Blog", href: "#" },
     { label: "Home Service Marketing Guide", href: "#" },
-    { label: "ROI Calculator", href: "#" },
-    { label: "Case Studies", href: "#" },
   ],
 };
 

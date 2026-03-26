@@ -226,29 +226,35 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
   "fullBlueprintHint": "One sentence hinting at what the full Blueprint reveals — reference something specific like their city's competitive gap, their CAC vs. industry benchmark, or their full 9-channel prioritized strategy."
 }`;
 
-    // Use streaming + finalMessage() to avoid HTTP timeout on longer generations
-    const stream = client.messages.stream({
-      model: "claude-opus-4-6",
-      max_tokens: 1024,
-      thinking: { type: "adaptive" },
-      system: SYSTEM_PROMPT,
-      messages: [{ role: "user", content: prompt }],
-    });
+    // Generate snapshot with one automatic retry on failure
+    const generateSnapshot = async () => {
+      const stream = client.messages.stream({
+        model: "claude-opus-4-6",
+        max_tokens: 1024,
+        thinking: { type: "adaptive" },
+        system: SYSTEM_PROMPT,
+        messages: [{ role: "user", content: prompt }],
+      });
+      const message = await stream.finalMessage();
+      const textBlock = message.content.find((b) => b.type === "text");
+      if (!textBlock || textBlock.type !== "text") {
+        throw new Error("No text response from model");
+      }
+      const jsonText = textBlock.text
+        .replace(/^```(?:json)?\s*/i, "")
+        .replace(/\s*```$/, "")
+        .trim();
+      return JSON.parse(jsonText);
+    };
 
-    const message = await stream.finalMessage();
-
-    const textBlock = message.content.find((b) => b.type === "text");
-    if (!textBlock || textBlock.type !== "text") {
-      throw new Error("No text response from model");
+    let snapshot: ReturnType<typeof JSON.parse>;
+    try {
+      snapshot = await generateSnapshot();
+    } catch (firstError) {
+      console.warn("[LEAD API] First attempt failed, retrying in 1s...", firstError);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      snapshot = await generateSnapshot(); // throws if second attempt also fails
     }
-
-    // Strip any accidental markdown fences
-    const jsonText = textBlock.text
-      .replace(/^```(?:json)?\s*/i, "")
-      .replace(/\s*```$/, "")
-      .trim();
-
-    const snapshot = JSON.parse(jsonText);
 
     // Log the lead
     console.log("[LEAD]", {
@@ -279,7 +285,7 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
   } catch (error) {
     console.error("Lead API error:", error);
     return NextResponse.json(
-      { error: "Failed to generate your snapshot. Please try again." },
+      { error: "We tried twice — something's off on our end. Try again in a moment." },
       { status: 500 }
     );
   }

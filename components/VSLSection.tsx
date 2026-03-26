@@ -3,7 +3,10 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Play, Star, Clock, ArrowRight, Award } from "lucide-react";
+import { Star, Clock, ArrowRight, Award } from "lucide-react";
+
+// TODO: Replace with your actual YouTube video ID
+const YOUTUBE_VIDEO_ID = "dQw4w9WgXcQ";
 
 const stats = [
   {
@@ -47,14 +50,14 @@ export default function VSLSection() {
             See It In Action
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
-            Watch How We Got an HVAC Contractor from 8 to 31 Booked Jobs in 90 Days
+            8 to 31 booked jobs in 90 days.
           </h2>
           <p className="text-white/55 text-lg leading-relaxed">
-            This is exactly how we do it &mdash; and what we&rsquo;ll build for you.
+            Real HVAC contractor. Real results. This is exactly how we do it.
           </p>
         </motion.div>
 
-        {/* Video placeholder */}
+        {/* Video embed */}
         <motion.div
           initial={{ opacity: 0, scale: 0.97 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -62,44 +65,13 @@ export default function VSLSection() {
           className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50 mb-10"
           style={{ aspectRatio: "16 / 9" }}
         >
-          {/* TODO: Replace src with actual video URL (e.g. YouTube embed or self-hosted) */}
-          {/* <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" ... /> */}
-
-          {/* Gradient background for placeholder */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0d1f35] via-[#0A1628] to-[#060e1a]" />
-
-          {/* Subtle noise texture overlay */}
-          <div
-            className="absolute inset-0 opacity-5"
-            style={{
-              backgroundImage:
-                "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-              backgroundSize: "200px 200px",
-            }}
+          <iframe
+            src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`}
+            title="Surge AI — HVAC contractor case study"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full"
           />
-
-          {/* Centered play button */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-18 h-18 rounded-full bg-[#FF6B47] flex items-center justify-center shadow-xl shadow-[#FF6B47]/40 cursor-pointer"
-              style={{ width: 72, height: 72 }}
-              aria-label="Play video"
-            >
-              <Play className="w-8 h-8 text-white fill-white ml-1" />
-            </motion.button>
-          </div>
-
-          {/* Duration badge */}
-          <div className="absolute bottom-4 right-4 px-2.5 py-1 bg-black/70 rounded-md text-white text-xs font-bold tracking-wide">
-            3:47
-          </div>
-
-          {/* Thumbnail label */}
-          <div className="absolute top-4 left-4 px-3 py-1 bg-[#FF6B47]/90 rounded-lg text-white text-xs font-bold uppercase tracking-wide">
-            Real Client Results
-          </div>
         </motion.div>
 
         {/* Trust stats row */}

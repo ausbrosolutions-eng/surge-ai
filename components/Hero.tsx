@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Play, Users, MapPin, Clock } from "lucide-react";
+import { ArrowRight, ChevronDown, Users, MapPin, Clock } from "lucide-react";
 
 const trades = ["HVAC", "Roofing", "Plumbing", "Restoration", "Electrical", "Landscaping"];
 
@@ -61,21 +61,17 @@ export default function Hero() {
             variants={itemVariants}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight text-balance"
           >
-            Stop Guessing.
+            Your phone should
             <br />
-            Start Growing.
-            <br />
-            <span className="gradient-text">We build your growth plan.</span>
+            ring <span className="text-[#00D4C8]">more.</span>
           </motion.h1>
 
           {/* Subheadline */}
           <motion.p
             variants={itemVariants}
-            className="mt-6 text-lg sm:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed text-balance"
+            className="mt-6 text-lg sm:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed"
           >
-            You&rsquo;re already great at the trade. The problem isn&rsquo;t your work &mdash;
-            it&rsquo;s that nobody has built you a real plan for getting more of it.{" "}
-            <span className="text-white/85 font-medium">That&rsquo;s what we do.</span>
+            We build a free, personalized marketing plan for your trade and your market — in 60 seconds.
           </motion.p>
 
           {/* CTAs */}
@@ -95,7 +91,7 @@ export default function Hero() {
               className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold text-base transition-all duration-200 hover:border-white/40 hover:-translate-y-0.5"
             >
               <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-                <Play className="w-3 h-3 text-white fill-white ml-0.5" />
+                <ChevronDown className="w-3.5 h-3.5 text-white" />
               </div>
               See How It Works
             </a>
@@ -131,7 +127,7 @@ export default function Hero() {
           className="mt-20 text-center"
         >
           <p className="text-white/30 text-xs font-semibold uppercase tracking-widest mb-6">
-            We&rsquo;ve worked with contractors in every trade
+            Every trade. Every market.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
             {trades.map((trade) => (
