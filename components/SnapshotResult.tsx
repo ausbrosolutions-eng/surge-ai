@@ -57,7 +57,7 @@ export default function SnapshotResult({
       {/* Header */}
       <div className="text-center pb-1">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00D4C8]/10 border border-[#00D4C8]/25 text-[#008F8A] text-xs font-semibold uppercase tracking-widest mb-3">
-          Blueprint Snapshot — {company}
+          Blueprint Snapshot: {company}
         </div>
         <h3 className="text-lg font-bold text-gray-900 leading-snug">
           {firstName}, here&rsquo;s what we found
@@ -99,7 +99,7 @@ export default function SnapshotResult({
         transition={{ delay: 0.2, duration: 0.4 }}
       >
         <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-          Top 3 Channels — Ranked by ROI for You
+          Top 3 Channels: Ranked by ROI for You
         </div>
         <div className="space-y-2">
           {snapshot.topChannels.map((channel) => (

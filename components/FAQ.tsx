@@ -9,17 +9,17 @@ const faqs = [
   {
     question: "What exactly is a Revenue Blueprint?",
     answer:
-      "A Blueprint is a fully custom growth roadmap built around your specific business — not a generic template. It includes a deep analysis of your current strengths and gaps, market data for your city and trade, a phased plan from your current revenue to your goal, and your top 9 marketing channels ranked by ROI for your specific situation. Most owners tell us it's the clearest picture they've ever had of where their business actually stands and exactly what to do next.",
+      "A Blueprint is a fully custom growth roadmap built around your specific business, not a generic template. It includes a deep analysis of your current strengths and gaps, market data for your city and trade, a phased plan from your current revenue to your goal, and your top 9 marketing channels ranked by ROI for your specific situation. Most owners tell us it's the clearest picture they've ever had of where their business actually stands and exactly what to do next.",
   },
   {
     question: "Who is Surge AI built for?",
     answer:
-      "Home service business owners doing $500K–$10M in annual revenue who want a real plan — not someone to take over. Our sweet spot is HVAC, plumbing, roofing, restoration, electrical, landscaping, pest control, and cleaning. Any trade-based business with real revenue goals and the drive to execute. If you're happy at your current size, we're probably not the right fit.",
+      "Home service business owners doing $500K–$10M in annual revenue who want a real plan, not someone to take over. Our sweet spot is HVAC, plumbing, roofing, restoration, electrical, landscaping, pest control, and cleaning. Any trade-based business with real revenue goals and the drive to execute. If you're happy at your current size, we're probably not the right fit.",
   },
   {
     question: "How is this different from a regular marketing agency?",
     answer:
-      "Three things. First, we start with a Blueprint — you understand the full strategy before committing to anything ongoing. Second, you stay in control — the Blueprint is yours, and you decide how involved we get in execution. Third, we tie everything to revenue and booked jobs, not traffic, impressions, or click-through rates. If a channel isn't producing real work, we say so.",
+      "Three things. First, we start with a Blueprint: you understand the full strategy before committing to anything ongoing. Second, you stay in control: the Blueprint is yours, and you decide how involved we get in execution. Third, we tie everything to revenue and booked jobs, not traffic, impressions, or click-through rates. If a channel isn't producing real work, we say so.",
   },
   {
     question: "How fast will I see results?",
@@ -29,12 +29,12 @@ const faqs = [
   {
     question: "Do I need to commit to a monthly retainer?",
     answer:
-      "No. The Blueprint ($499) is a standalone product — you get the full roadmap and one review call with zero strings attached. If you want ongoing support after that, both options are month-to-month with 30-day cancellation. No annual lock-ins, ever.",
+      "No. The Blueprint ($499) is a standalone product. You get the full roadmap and one review call with zero strings attached. If you want ongoing support after that, both options are month-to-month with 30-day cancellation. No annual lock-ins, ever.",
   },
   {
     question: "What does the AI actually do in this process?",
     answer:
-      "Claude (Anthropic's AI model) analyzes your intake data, cross-references it with current industry benchmarks, competitor positioning in your market, and best practices for your trade and geography — then synthesizes a custom Blueprint in hours instead of weeks. We then review and refine it with you directly. AI does the research and synthesis at speed; human judgment and your business context shape the final strategy.",
+      "Claude (Anthropic's AI model) analyzes your intake data, cross-references it with current industry benchmarks, competitor positioning in your market, and best practices for your trade and geography, then synthesizes a custom Blueprint in hours instead of weeks. We then review and refine it with you directly. AI does the research and synthesis at speed; human judgment and your business context shape the final strategy.",
   },
   {
     question: "I'm not tech-savvy. Will I understand the Blueprint?",
@@ -44,12 +44,12 @@ const faqs = [
   {
     question: "I've been burned by agencies before. How is this different?",
     answer:
-      "The biggest difference: you own everything. The Blueprint is yours to keep, use, or take to whoever you want. We don't hold your Google Ads account hostage, we don't lock you into a 12-month contract, and we don't obscure what we're doing. You'll know exactly what the plan is and why — from day one.",
+      "The biggest difference: you own everything. The Blueprint is yours to keep, use, or take to whoever you want. We don't hold your Google Ads account hostage, we don't lock you into a 12-month contract, and we don't obscure what we're doing. You'll know exactly what the plan is and why, from day one.",
   },
   {
     question: "What if my area is already competitive?",
     answer:
-      "Competitive markets are actually where we do our best work. There's more search volume, more room to optimize, and usually more contractors running mediocre marketing — which means better positioning for the ones who get it right. The Blueprint will tell you exactly what the gap looks like in your market and the specific moves to take advantage of it.",
+      "Competitive markets are actually where we do our best work. There's more search volume, more room to optimize, and usually more contractors running mediocre marketing, which means better positioning for the ones who get it right. The Blueprint will tell you exactly what the gap looks like in your market and the specific moves to take advantage of it.",
   },
 ];
 

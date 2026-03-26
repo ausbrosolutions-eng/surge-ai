@@ -13,7 +13,7 @@ const tiers = [
     price: "$499",
     period: " one-time",
     description:
-      "Your fully custom growth roadmap. Built in 48 hours around your trade, market, and revenue goal. No retainer required — yours to keep and use however you want.",
+      "Your fully custom growth roadmap. Built in 48 hours around your trade, market, and revenue goal. No retainer required. Yours to keep and use however you want.",
     badge: null,
     features: [
       "15-minute intake survey",
@@ -38,7 +38,7 @@ const tiers = [
     price: "$1,500",
     period: "/month",
     description:
-      "The Blueprint plus a strategic partner who stays in the fight with you. Monthly calls, unlimited async support, and content on demand. You're in the driver's seat — we ride shotgun.",
+      "The Blueprint plus a strategic partner who stays in the fight with you. Monthly calls, unlimited async support, and content on demand. You're in the driver's seat. We ride shotgun.",
     badge: "Most Popular",
     features: [
       "Everything in The Blueprint (refreshed quarterly)",
@@ -202,7 +202,7 @@ export default function Services() {
             <span className="font-semibold text-[#0A1628]">
               Using ServiceTitan, Jobber, or HouseCall Pro?
             </span>{" "}
-            We include CRM setup guidance in every plan — no extra charge. Need a deeper API integration? Ask about our one-time setup.{" "}
+            We include CRM setup guidance in every plan. No extra charge. Need a deeper API integration? Ask about our one-time setup.{" "}
             <a
               href="#contact"
               className="text-[#0A1628] font-semibold underline-offset-4 hover:underline"

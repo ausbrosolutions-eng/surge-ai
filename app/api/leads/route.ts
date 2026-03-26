@@ -71,7 +71,7 @@ function buildBlueprintEmail(
           <!-- Header -->
           <tr>
             <td style="background:#0A1628;border-radius:16px 16px 0 0;padding:32px 40px 28px;">
-              <div style="color:#00D4C8;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Blueprint Snapshot — ${company}</div>
+              <div style="color:#00D4C8;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Blueprint Snapshot: ${company}</div>
               <div style="color:#fff;font-size:24px;font-weight:800;line-height:1.3;">${firstName}, here's what we found.</div>
               <div style="color:rgba(255,255,255,0.5);font-size:14px;margin-top:6px;">Personalized for your business. Not a template.</div>
             </td>

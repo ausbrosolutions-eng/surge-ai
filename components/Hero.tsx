@@ -71,7 +71,7 @@ export default function Hero() {
             variants={itemVariants}
             className="mt-6 text-lg sm:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed"
           >
-            We build a free, personalized marketing plan for your trade and your market — in 60 seconds.
+            A free, deep analysis of your business. We find the top 3 inefficiencies killing your revenue. In 60 seconds.
           </motion.p>
 
           {/* CTAs */}

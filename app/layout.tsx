@@ -12,7 +12,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Surge AI | AI-Powered Revenue Consulting for Home Service Businesses",
   description:
-    "We build AI-powered revenue blueprints for home service businesses ready to scale. Custom roadmaps, marketing engine, and growth consulting — you drive, we navigate.",
+    "We build AI-powered revenue blueprints for home service businesses ready to scale. Custom roadmaps, marketing engine, and growth consulting. You drive, we navigate.",
   keywords: [
     "home service marketing",
     "revenue blueprint",

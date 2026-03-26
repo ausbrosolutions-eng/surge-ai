@@ -39,7 +39,7 @@ const packages = [
       "Full local SEO (on-page, citations, schema markup)",
       "2 SEO blog posts per month",
       "Google Ads campaign management (ad spend billed separately)",
-      "Reputation management — monitor & respond to all reviews",
+      "Reputation management: monitor & respond to all reviews",
       "Referral partner program launch (plumbers, HVAC, roofers)",
       "Bi-weekly strategy calls",
       "Real-time KPI dashboard access",
@@ -86,7 +86,7 @@ const addons = [
 const faqs = [
   {
     q: "Do I have to sign a long-term contract?",
-    a: "We offer month-to-month agreements after a 90-day initial commitment. Most clients stay 12–24+ months because results compound over time. We don't believe in locking you in — we believe in earning your business every month.",
+    a: "We offer month-to-month agreements after a 90-day initial commitment. Most clients stay 12–24+ months because results compound over time. We don't believe in locking you in. We believe in earning your business every month.",
   },
   {
     q: "Is ad spend included in the monthly price?",
@@ -98,11 +98,11 @@ const faqs = [
   },
   {
     q: "Do you work with businesses outside the home service industry?",
-    a: "We exclusively serve home service businesses — HVAC, plumbing, roofing, electrical, restoration, landscaping, pest control, and related trades. This specialization means we know your customer, your seasonality, and your competitive landscape better than any generalist agency.",
+    a: "We exclusively serve home service businesses: HVAC, plumbing, roofing, electrical, restoration, landscaping, pest control, and related trades. This specialization means we know your customer, your seasonality, and your competitive landscape better than any generalist agency.",
   },
   {
     q: "What makes Blueprint AI Marketing different?",
-    a: "Three things: (1) We exclusively serve home service businesses — this isn't a side niche, it's everything we do. (2) We are 3–5 years ahead on AI search optimization — getting your business cited in ChatGPT and Google AI Overviews while your competitors don't know it exists. (3) Full transparency — you see every lead, every call, every dollar spent, every result, in real time.",
+    a: "Three things: (1) We exclusively serve home service businesses. This isn't a side niche, it's everything we do. (2) We are 3–5 years ahead on AI search optimization, getting your business cited in ChatGPT and Google AI Overviews while your competitors don't know it exists. (3) Full transparency: you see every lead, every call, every dollar spent, every result, in real time.",
   },
 ];
 

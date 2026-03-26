@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
-  title: "About — Surge AI",
+  title: "About | Surge AI",
   description: "Why we built Surge AI and the story behind the home service marketing platform.",
 };
 

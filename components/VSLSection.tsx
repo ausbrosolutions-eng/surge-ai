@@ -67,7 +67,7 @@ export default function VSLSection() {
         >
           <iframe
             src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`}
-            title="Surge AI — HVAC contractor case study"
+            title="Surge AI: HVAC contractor case study"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             className="absolute inset-0 w-full h-full"

@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
-  title: "How It Works — Surge AI",
+  title: "How It Works | Surge AI",
   description: "The 3-step process from free snapshot to a fully custom revenue blueprint for your home service business.",
 };
 

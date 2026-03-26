@@ -76,7 +76,7 @@ const testimonials = [
     avatarBg: "bg-emerald-600",
     rating: 5,
     quote:
-      "Went from 18 Google reviews to 94 in three months — all real, all from real customers. That alone put us in the Map Pack for every keyword in our city. The review system runs while we sleep.",
+      "Went from 18 Google reviews to 94 in three months. All real, all from real customers. That alone put us in the Map Pack for every keyword in our city. The review system runs while we sleep.",
     result: "18 → 94 Google reviews, Map Pack #1",
     resultColor: "text-purple-600",
   },

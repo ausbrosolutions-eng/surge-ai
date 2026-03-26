@@ -35,7 +35,7 @@ const rows = [
   },
   {
     feature: "You see the full plan",
-    agency: "No — they keep the playbook",
+    agency: "No, they keep the playbook",
     surge: "You own every document",
     diy: "You build it",
     agencyType: "bad",

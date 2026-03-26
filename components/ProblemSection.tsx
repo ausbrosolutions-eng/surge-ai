@@ -13,7 +13,7 @@ const problems = [
     tag: "The Lead Problem",
     title: "Your phone goes quiet and you don't know why",
     description:
-      "Last month was great. This month the calls dried up. You posted on Facebook, asked for referrals, even ran a promotion — but nothing predictable. You're running your business on hope, not a system.",
+      "Last month was great. This month the calls dried up. You posted on Facebook, asked for referrals, even ran a promotion, but nothing predictable. You're running your business on hope, not a system.",
   },
   {
     icon: BarChart2,

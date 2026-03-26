@@ -14,14 +14,14 @@ const steps = [
     title: "Free Blueprint Snapshot",
     subtitle: "Know your biggest gap in 60 seconds",
     description:
-      "Fill out a quick 5-question form about your business — trade, location, revenue range, and biggest challenge. We build a personalized snapshot showing your most critical growth gap and your top 3 highest-ROI moves right now.",
+      "Fill out a quick 5-question form about your business: trade, location, revenue range, and biggest challenge. We build a personalized snapshot showing your most critical growth gap and your top 3 highest-ROI moves right now.",
     deliverables: [
       "Revenue gap identified instantly",
       "Top 3 channels for your trade and city",
       "Competitive landscape summary",
       "One move you can make this week",
     ],
-    timeframe: "Ready in 60 seconds — free",
+    timeframe: "Ready in 60 seconds, free",
   },
   {
     number: "02",
@@ -31,14 +31,14 @@ const steps = [
     title: "Your Custom Revenue Blueprint",
     subtitle: "A real plan built around your exact business",
     description:
-      "In 48 hours we build your fully custom Blueprint — deep research on your trade, your market, and your competitors combined with your specific revenue goal. Phase-by-phase action plan for the next 90 days, 6 months, and 12 months.",
+      "In 48 hours we build your fully custom Blueprint. Deep research on your trade, your market, and your competitors combined with your specific revenue goal. Phase-by-phase action plan for the next 90 days, 6 months, and 12 months.",
     deliverables: [
       "Full business strength and gap assessment",
       "Market data for your city and trade",
       "Phase-by-phase revenue architecture",
       "9-channel marketing engine ranked by ROI",
     ],
-    timeframe: "$499 — one time, no subscription",
+    timeframe: "$499, one time, no subscription",
     price: true,
   },
   {
@@ -49,15 +49,15 @@ const steps = [
     title: "Execute on Your Terms",
     subtitle: "Your plan, your pace, your business",
     description:
-      "We walk through the Blueprint together and you decide how far you want to go. Use it yourself, bring us in for monthly strategy calls, or hand us the execution entirely. Most clients run with it on their own — that's the point.",
+      "We walk through the Blueprint together and you decide how far you want to go. Use it yourself, bring us in for monthly strategy calls, or hand us the execution entirely. Most clients run with it on their own. That's the point.",
     deliverables: [
       "Blueprint review call included",
       "90-day priority sequence laid out",
       "Optional monthly strategy support ($1,500/mo)",
       "Optional full implementation ($3,500+/mo)",
     ],
-    timeframe: "Your call — no lock-in, ever",
-    note: "Most of our clients get the Blueprint and start executing on their own. That's the point — you shouldn't need us forever.",
+    timeframe: "Your call. No lock-in, ever",
+    note: "Most of our clients get the Blueprint and start executing on their own. That's the point. You shouldn't need us forever.",
   },
 ];
 
