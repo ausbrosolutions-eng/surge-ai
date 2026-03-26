@@ -2,6 +2,8 @@ import Anthropic from "@anthropic-ai/sdk";
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
+// Prevent Next.js from statically analyzing this route at build time
+export const dynamic = "force-dynamic";
 // Extend Vercel/Next.js function timeout to 30s for AI generation
 export const maxDuration = 30;
 
@@ -9,7 +11,12 @@ const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy-init Resend so module-level import doesn't throw during Next.js build
+let _resend: Resend | null = null;
+const getResend = () => {
+  if (!_resend) _resend = new Resend(process.env.RESEND_API_KEY);
+  return _resend;
+};
 
 // ─── Email HTML Template ─────────────────────────────────────────────────────
 function buildBlueprintEmail(
@@ -268,7 +275,7 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
 
     // Send blueprint email (non-blocking — don't fail the request if email fails)
     if (process.env.RESEND_API_KEY) {
-      resend.emails
+      getResend().emails
         .send({
           from: process.env.RESEND_FROM_EMAIL ?? "Surge AI <blueprint@withsurge.xyz>",
           to: email,
