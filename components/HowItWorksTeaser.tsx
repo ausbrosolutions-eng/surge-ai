@@ -1,73 +1,50 @@
-import { ClipboardList, FileText, Rocket, ArrowRight } from "lucide-react";
-import Link from "next/link";
-
 const steps = [
   {
-    icon: ClipboardList,
     number: "01",
-    title: "Free Blueprint Snapshot",
-    subtitle: "Know your biggest gap in 60 seconds",
-    iconColor: "text-[#00D4C8]",
-    iconBg: "bg-[#00D4C8]/10",
+    title: "Free Snapshot",
+    description: "60-second analysis of your biggest revenue gap and top 3 growth channels.",
   },
   {
-    icon: FileText,
     number: "02",
-    title: "Custom Revenue Blueprint",
-    subtitle: "Your plan, built in 48 hours",
-    iconColor: "text-[#FF6B47]",
-    iconBg: "bg-[#FF6B47]/10",
+    title: "Custom Blueprint",
+    description: "Your full growth roadmap, built in 48 hours around your trade, market, and revenue goal.",
   },
   {
-    icon: Rocket,
     number: "03",
-    title: "Execute on Your Terms",
-    subtitle: "DIY, guided, or fully managed",
-    iconColor: "text-green-400",
-    iconBg: "bg-green-500/10",
+    title: "Execute",
+    description: "DIY with the Blueprint, get guided support, or hand it all off. Your call.",
   },
 ];
 
 export default function HowItWorksTeaser() {
   return (
-    <section className="bg-white border-b border-gray-100 py-14">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-0">
-          {steps.map((step, index) => (
-            <div key={step.number} className="flex items-center flex-1 w-full sm:w-auto">
-              <div className="flex items-center gap-4 flex-1">
-                <div
-                  className={`w-12 h-12 rounded-xl ${step.iconBg} flex items-center justify-center flex-shrink-0`}
-                >
-                  <step.icon className={`w-6 h-6 ${step.iconColor}`} />
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-gray-300 mb-0.5">{step.number}</div>
-                  <div className="text-sm font-bold text-[#0A1628] leading-tight">
-                    {step.title}
-                  </div>
-                  <div className="text-xs text-gray-400 mt-0.5">{step.subtitle}</div>
-                </div>
+    <section id="how-it-works" className="relative py-24 sm:py-28 bg-[#0A0A0A] noise-texture">
+      <div className="relative max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+        <p className="font-sans text-xs font-medium tracking-[0.08em] uppercase text-[#9A9086] mb-4">
+          How It Works
+        </p>
+        <h2 className="font-display text-[36px] sm:text-[48px] font-bold leading-[0.95] tracking-[0.03em] uppercase text-[#E8E2D8] mb-16">
+          Three steps. No lock-ins.
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+          {steps.map((step, i) => (
+            <div
+              key={step.number}
+              className={`py-8 md:py-0 md:px-8 ${
+                i < steps.length - 1 ? "border-b md:border-b-0 md:border-r border-[#2A2520]" : ""
+              } ${i === 0 ? "md:pl-0" : ""} ${i === steps.length - 1 ? "md:pr-0" : ""}`}
+            >
+              <div className="font-display text-[48px] font-extrabold leading-none tracking-[0.02em] text-[#B87333] mb-4">
+                {step.number}
               </div>
-
-              {/* Connector arrow — between steps only */}
-              {index < steps.length - 1 && (
-                <div className="hidden sm:flex items-center justify-center w-10 flex-shrink-0">
-                  <ArrowRight className="w-4 h-4 text-gray-200" />
-                </div>
-              )}
+              <h3 className="font-display text-xl font-semibold tracking-[0.05em] uppercase text-[#E8E2D8] mb-3">
+                {step.title}
+              </h3>
+              <p className="font-sans text-base font-light tracking-[-0.01em] text-[#9A9086] leading-relaxed">
+                {step.description}
+              </p>
             </div>
           ))}
-        </div>
-
-        <div className="mt-8 text-center">
-          <Link
-            href="/how-it-works"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0A1628] hover:text-[#00D4C8] transition-colors"
-          >
-            See the full process
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
         </div>
       </div>
     </section>
