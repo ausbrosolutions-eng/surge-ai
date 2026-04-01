@@ -10,41 +10,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Deep ocean navy — primary background
-        navy: {
-          DEFAULT: "#0A1628",
-          50: "#f0f4ff",
-          100: "#dce6ff",
-          200: "#b8ccff",
-          300: "#82a6ff",
-          400: "#4d79ff",
-          500: "#2250f5",
-          600: "#1a3de8",
-          700: "#172fb5",
-          800: "#182a90",
-          900: "#192a6e",
-          950: "#0A1628",
+        dark: {
+          DEFAULT: "#0A0A0A",
+          surface: "#111111",
+          card: "#1A1A1A",
+          border: "#2A2520",
         },
-        // Override blue → electric teal (all blue-* classes become Surge teal)
-        blue: {
-          DEFAULT: "#00D4C8",
-          300: "#66E8E3",
-          400: "#33DDD7",
-          500: "#00D4C8",
-          600: "#00B5AA",
-          950: "#002F2D",
+        copper: {
+          DEFAULT: "#B87333",
+          light: "#D4956A",
+          dark: "#8B5E3C",
         },
-        // Surge coral — warm CTA energy
-        coral: {
-          DEFAULT: "#FF6B47",
-          400: "#FF8B6B",
-          500: "#FF6B47",
-          600: "#E55A37",
-        },
-        // Warm sand — coastal warmth accent
-        sand: {
-          DEFAULT: "#F5E6C8",
-          light: "#FAF0DC",
+        warm: {
+          white: "#E8E2D8",
+          gray: "#9A9086",
+          muted: "#5A5550",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -87,24 +67,15 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-barlow)", "system-ui", "sans-serif"],
       },
       animation: {
-        "fade-in": "fadeIn 0.5s ease-in-out",
-        "slide-up": "slideUp 0.5s ease-out",
-        shimmer: "shimmer 2s linear infinite",
+        "fade-in": "fadeIn 0.6s ease-out",
       },
       keyframes: {
         fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
-        },
-        slideUp: {
-          "0%": { transform: "translateY(20px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "-1000px 0" },
-          "100%": { backgroundPosition: "1000px 0" },
         },
       },
     },

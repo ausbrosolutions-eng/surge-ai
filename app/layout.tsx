@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
@@ -9,36 +9,42 @@ const inter = Inter({
   display: "swap",
 });
 
+const barlowCondensed = Barlow_Condensed({
+  subsets: ["latin"],
+  variable: "--font-barlow",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Surge AI | AI-Powered Revenue Consulting for Home Service Businesses",
+  title: "Surge Advisory | Revenue Consulting for Home Service Businesses",
   description:
-    "We build AI-powered revenue blueprints for home service businesses ready to scale. Custom roadmaps, marketing engine, and growth consulting. You drive, we navigate.",
+    "We build revenue blueprints for home service businesses ready to scale. Custom roadmaps, marketing strategy, and growth consulting.",
   keywords: [
     "home service marketing",
     "revenue blueprint",
-    "AI consulting",
     "home service business growth",
     "HVAC marketing",
     "roofing marketing",
     "plumbing marketing",
     "restoration marketing",
     "local service business scaling",
-    "AI marketing agency",
+    "marketing agency",
   ],
-  authors: [{ name: "Surge AI" }],
+  authors: [{ name: "Surge Advisory" }],
   openGraph: {
-    title: "Surge AI | AI-Powered Revenue Consulting",
+    title: "Surge Advisory | Revenue Consulting for Home Service Businesses",
     description:
-      "We build the roadmap. You drive the revenue. AI-powered growth blueprints for home service businesses scaling from X to Y.",
+      "We build the roadmap. You drive the revenue. Growth blueprints for home service businesses scaling from X to Y.",
     type: "website",
     locale: "en_US",
-    siteName: "Surge AI",
+    siteName: "Surge Advisory",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Surge AI | Revenue Blueprints for Home Service Businesses",
+    title: "Surge Advisory | Revenue Blueprints for Home Service Businesses",
     description:
-      "We build the roadmap. You drive the revenue. AI-powered growth consulting.",
+      "We build the roadmap. You drive the revenue.",
   },
   robots: {
     index: true,
@@ -56,19 +62,17 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "Surge AI",
+  name: "Surge Advisory",
   description:
-    "AI-powered revenue consulting for home service businesses. Custom growth blueprints, marketing strategy, and implementation support.",
-  url: "https://withsurge.ai",
-  telephone: "+1-800-000-0000",
+    "Revenue consulting for home service businesses. Custom growth blueprints, marketing strategy, and implementation support.",
+  url: "https://surgeadvisory.co",
   priceRange: "$$",
   serviceType: [
     "Revenue Blueprint",
-    "AI Marketing Consulting",
+    "Marketing Consulting",
     "Home Service Marketing",
     "Google LSA Management",
     "Local SEO",
-    "Referral Network Development",
   ],
   areaServed: {
     "@type": "Country",
@@ -76,7 +80,7 @@ const jsonLd = {
   },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Surge AI Services",
+    name: "Surge Advisory Services",
     itemListElement: [
       {
         "@type": "Offer",
@@ -86,23 +90,15 @@ const jsonLd = {
       },
       {
         "@type": "Offer",
-        name: "The Surge Plan",
+        name: "Done With You",
         price: "1500",
         priceCurrency: "USD",
-        priceSpecification: {
-          "@type": "RecurringCharges",
-          billingPeriod: "monthly",
-        },
       },
       {
         "@type": "Offer",
-        name: "The Full Surge",
+        name: "Done For You",
         price: "3500",
         priceCurrency: "USD",
-        priceSpecification: {
-          "@type": "RecurringCharges",
-          billingPeriod: "monthly",
-        },
       },
     ],
   },
@@ -121,7 +117,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} font-sans`}>
+      <body className={`${inter.variable} ${barlowCondensed.variable} font-sans`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
