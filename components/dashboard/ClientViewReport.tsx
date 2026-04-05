@@ -113,6 +113,7 @@ export default function ClientViewReport({ clientId }: Props) {
     const citationsOptimized = clientCitations.filter(
       (c) => c.status === "optimized"
     ).length;
+    const hasCitationsData = clientCitations.length > 0;
 
     const clientChecklistEntries = Object.entries(checklists).filter(([key]) =>
       key.startsWith(clientId)
@@ -144,6 +145,7 @@ export default function ClientViewReport({ clientId }: Props) {
       googleRating: googleStats?.rating ?? null,
       gbpPostsCount: gbpPostsThisMonth.length,
       citationsOptimized,
+      hasCitationsData,
       completedTasks,
       totalTasks,
       topSources,
@@ -153,6 +155,7 @@ export default function ClientViewReport({ clientId }: Props) {
 
   if (!client || !metrics) return null;
 
+  const maxSourceCount = metrics.topSources[0]?.[1] ?? 1;
   const { score } = metrics;
   const scoreBadgeClass =
     score >= 75
@@ -225,8 +228,8 @@ export default function ClientViewReport({ clientId }: Props) {
             value={String(metrics.gbpPostsCount)}
           />
           <MetricRow
-            label="Citations Built"
-            value={String(metrics.citationsOptimized)}
+            label="Citations Optimized"
+            value={metrics.hasCitationsData ? String(metrics.citationsOptimized) : "—"}
           />
           <MetricRow
             label="Tasks Completed"
@@ -246,7 +249,7 @@ export default function ClientViewReport({ clientId }: Props) {
             </p>
             <div className="flex flex-col gap-4">
               {metrics.topSources.map(([source, count], i) => {
-                const pct = Math.round((count / metrics.leadsThisMonth) * 100);
+                const pct = Math.round((count / maxSourceCount) * 100);
                 return (
                   <div key={source}>
                     <div className="flex items-center justify-between mb-1.5">
