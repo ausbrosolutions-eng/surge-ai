@@ -90,9 +90,8 @@ export default function ClientViewReport({ clientId }: Props) {
       inMonth(l.createdAt, priorYr, priorMo)
     );
     const leadDelta = leadsThisMonth.length - leadsPriorMonth.length;
-    // Only show trend arrow when we have any data to compare against
-    const hasPriorData =
-      leadsPriorMonth.length > 0 || leadsThisMonth.length > 0;
+    // Only show trend arrow when we have a prior month baseline to compare against
+    const hasPriorData = leadsPriorMonth.length > 0;
 
     const cpl =
       client.adSpend > 0 && leadsThisMonth.length > 0
@@ -162,21 +161,6 @@ export default function ClientViewReport({ clientId }: Props) {
       ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
       : "text-red-400 border-red-500/30 bg-red-500/10";
 
-  const maxSourceCount = metrics.topSources[0]?.[1] ?? 1;
-
-  function LeadTrend() {
-    if (!metrics!.hasPriorData || metrics!.leadDelta === 0) return null;
-    return metrics!.leadDelta > 0 ? (
-      <span className="text-emerald-400 text-xs ml-2">
-        ↑ +{metrics!.leadDelta} vs last month
-      </span>
-    ) : (
-      <span className="text-red-400 text-xs ml-2">
-        ↓ {metrics!.leadDelta} vs last month
-      </span>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-[#0A1628] py-10 px-4">
       {/* Agency back link — subtle, top-right */}
@@ -214,7 +198,13 @@ export default function ClientViewReport({ clientId }: Props) {
             label="Total Leads"
             value={String(metrics.leadsThisMonth)}
             highlight
-            trend={<LeadTrend />}
+            trend={
+              metrics.hasPriorData && metrics.leadDelta !== 0 ? (
+                <span className={`text-xs ml-2 ${metrics.leadDelta > 0 ? "text-emerald-400" : "text-red-400"}`}>
+                  {metrics.leadDelta > 0 ? "↑" : "↓"} {metrics.leadDelta > 0 ? `+${metrics.leadDelta}` : metrics.leadDelta} vs last month
+                </span>
+              ) : undefined
+            }
           />
           <MetricRow
             label="Cost Per Lead"
@@ -256,7 +246,7 @@ export default function ClientViewReport({ clientId }: Props) {
             </p>
             <div className="flex flex-col gap-4">
               {metrics.topSources.map(([source, count], i) => {
-                const pct = Math.round((count / maxSourceCount) * 100);
+                const pct = Math.round((count / metrics.leadsThisMonth) * 100);
                 return (
                   <div key={source}>
                     <div className="flex items-center justify-between mb-1.5">
