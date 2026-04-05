@@ -152,7 +152,11 @@ export default function ClientOverviewPage() {
 
   return (
     <div className="flex-1 flex flex-col overflow-auto">
-      <DashboardHeader title={client.businessName} selectedClient={client} />
+      <DashboardHeader
+        title={client.businessName}
+        selectedClient={client}
+        clientViewHref={`/dashboard/clients/${clientId}/client-view`}
+      />
 
       <main className="flex-1 p-6 space-y-6">
         {/* Score cards row */}
