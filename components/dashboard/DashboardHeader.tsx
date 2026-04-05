@@ -1,5 +1,6 @@
 "use client";
-import { Plus, Download } from "lucide-react";
+import { Plus, Download, ExternalLink } from "lucide-react";
+import Link from "next/link";
 import { Client } from "@/lib/types";
 import StatusBadge from "./StatusBadge";
 
@@ -9,6 +10,7 @@ interface Props {
   onAddLead?: () => void;
   onAddTask?: () => void;
   onExport?: () => void;
+  clientViewHref?: string;
 }
 
 export default function DashboardHeader({
@@ -17,6 +19,7 @@ export default function DashboardHeader({
   onAddLead,
   onAddTask,
   onExport,
+  clientViewHref,
 }: Props) {
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long",
@@ -41,6 +44,16 @@ export default function DashboardHeader({
       </div>
 
       <div className="flex items-center gap-2">
+        {clientViewHref && (
+          <Link
+            href={clientViewHref}
+            target="_blank"
+            className="flex items-center gap-1.5 border border-[#00D4C8]/30 hover:border-[#00D4C8]/60 text-[#00D4C8] text-xs font-medium px-3 py-2 rounded-lg transition-colors"
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+            Client View
+          </Link>
+        )}
         {onAddLead && (
           <button
             onClick={onAddLead}
