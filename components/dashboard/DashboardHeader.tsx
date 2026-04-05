@@ -48,6 +48,7 @@ export default function DashboardHeader({
           <Link
             href={clientViewHref}
             target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-1.5 border border-[#00D4C8]/30 hover:border-[#00D4C8]/60 text-[#00D4C8] text-xs font-medium px-3 py-2 rounded-lg transition-colors"
           >
             <ExternalLink className="w-3.5 h-3.5" />
