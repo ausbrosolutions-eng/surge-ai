@@ -15,19 +15,19 @@ const revenueOptions = [
 ];
 
 const challengeOptions = [
-  "Not enough leads coming in",
-  "Leads aren't converting to booked jobs",
-  "Don't know where marketing spend is going",
-  "No clear roadmap to my revenue goal",
-  "Need to scale faster without adding chaos",
+  "Invoices stuck in collections for 60+ days",
+  "Documentation gaps blocking billing at 3.3",
+  "Team buried in manual data entry / uploads",
+  "Can't pull clean reports from my CRM",
+  "Need to scale without doubling the admin load",
   "Other",
 ];
 
 const LOADING_MESSAGES = [
-  "Analyzing your market...",
-  "Identifying your biggest revenue gap...",
-  "Ranking your top 3 channels...",
-  "Customizing your growth plan...",
+  "Pulling restoration industry benchmarks...",
+  "Estimating your collections exposure...",
+  "Identifying likely workflow bottlenecks...",
+  "Building your snapshot...",
   "Almost ready...",
 ];
 
@@ -147,13 +147,13 @@ export default function FinalCTA() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
               <p className="font-sans text-xs font-medium tracking-[0.08em] uppercase text-[#9A9086] mb-4">
-                Free Blueprint Snapshot
+                Free Snapshot
               </p>
               <h2 className="font-display text-[36px] sm:text-[48px] font-bold leading-[0.95] tracking-[0.03em] uppercase text-[#E8E2D8] mb-6">
-                Find out what&rsquo;s costing you jobs
+                See where your money is stuck
               </h2>
               <div className="space-y-3 mb-8">
-                {["Your #1 revenue gap, named", "Top 3 channels for your trade", "One action to take this week", "Your market's competitive blind spot"].map((item) => (
+                {["Estimated collections exposure for your size", "Top 3 leakage points in the restoration workflow", "Whether your current CRM is holding you back", "One action you can take this week"].map((item) => (
                   <div key={item} className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#B87333] flex-shrink-0" />
                     <span className="font-sans text-sm font-light text-[#9A9086]">{item}</span>
@@ -161,7 +161,7 @@ export default function FinalCTA() {
                 ))}
               </div>
               <p className="font-sans text-xs font-normal text-[#5A5550] border-l border-[#2A2520] pl-4">
-                Reviewed by a real person within 24 hours. No automated pitch.
+                Reviewed by a real person within 24 hours. If it looks like a fit, we'll talk about the 2-week Ops Audit. If not, you keep the snapshot.
               </p>
             </div>
 

@@ -1,8 +1,8 @@
 const footerLinks = {
   Services: [
-    { label: "The Blueprint", href: "/#services" },
-    { label: "Done With You", href: "/#services" },
-    { label: "Done For You", href: "/#services" },
+    { label: "Surge Ops Audit", href: "/#services" },
+    { label: "Phased Retainer", href: "/#services" },
+    { label: "Fractional CTO", href: "/#services" },
   ],
   Company: [
     { label: "How It Works", href: "/#how-it-works" },
@@ -24,7 +24,7 @@ export default function Footer() {
               </span>
             </a>
             <p className="font-sans text-sm font-light text-[#5A5550] max-w-xs leading-relaxed">
-              Revenue consulting for home service businesses ready to scale.
+              Ops infrastructure and AI automation for restoration contractors ready to scale.
             </p>
           </div>
 

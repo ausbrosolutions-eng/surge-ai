@@ -1,29 +1,38 @@
 const tiers = [
   {
-    name: "The Blueprint",
-    tagline: "Start here. Most owners never need more.",
-    price: "$499",
+    name: "Surge Ops Audit",
+    tagline: "Start here. Find the money before committing to the build.",
+    price: "$3,500",
     period: "one-time",
-    description: "Your fully custom growth roadmap. Built in 48 hours around your trade, market, and revenue goal.",
-    features: "15-min intake, full gap assessment, market data, competitor breakdown, 9 channels ranked by ROI, 90-day action plan, 60-min review call",
-    popular: false,
-  },
-  {
-    name: "Done With You",
-    tagline: "You execute. We guide.",
-    price: "$1,500",
-    period: "/month",
-    description: "The Blueprint plus a strategic partner. Monthly calls, unlimited async support, and content on demand.",
-    features: "Everything in The Blueprint (refreshed quarterly), monthly strategy call, unlimited async support, performance review, AI-generated content, review request templates, month-to-month",
+    description: "A 2-week data audit of your restoration business. We identify stuck revenue, documentation gaps, and the 90-day roadmap to fix them. Refundable if we can't find $150K in recoverable revenue.",
+    features: "90-min kickoff call, full pipeline audit, collections exposure analysis, documentation gap report, tech stack evaluation, 20-page branded report, 60-min review call, credits toward retainer if you move forward",
     popular: true,
   },
   {
-    name: "Done For You",
-    tagline: "We run it. You run the business.",
-    price: "From $3,500",
+    name: "Phase 1: Foundation",
+    tagline: "Months 1-3 implementation.",
+    price: "$6,500",
     period: "/month",
-    description: "Full-service implementation. Every channel, fully managed, fully tied back to revenue.",
-    features: "Everything in Done With You, Google LSA management, PPC campaigns, GBP optimization, reputation management, call tracking, bi-weekly calls, revenue-linked dashboard",
+    description: "The intensive build period. Required field enforcement, first automations live, core integrations deployed, team training begins.",
+    features: "Weekly strategy calls, tech stack setup or platform migration lead, collection SMS sequence live, document keyword check automated, Encircle and/or CRM migration kickoff, first revenue recovery underway",
+    popular: false,
+  },
+  {
+    name: "Phase 2: Build-Out",
+    tagline: "Months 4-6 implementation.",
+    price: "$5,000",
+    period: "/month",
+    description: "The full automation suite deployed. Team trained. Reporting live. Customer comms automated.",
+    features: "Bi-weekly strategy calls, full automation suite built, customer milestone SMS live, reporting dashboards delivered, AI estimate writing pilot, carrier portal automations, team training complete",
+    popular: false,
+  },
+  {
+    name: "Phase 3: Optimization",
+    tagline: "Month 7+ ongoing partnership.",
+    price: "$3,500",
+    period: "/month",
+    description: "Ongoing maintenance, performance tuning, new feature builds. Surge stays in the room as your fractional CTO.",
+    features: "Monthly strategy call, ongoing automation maintenance, new feature builds as needed, on-call support for owners and ops leads, quarterly business review",
     popular: false,
   },
 ];
@@ -31,15 +40,16 @@ const tiers = [
 export default function Services() {
   return (
     <section id="services" className="relative py-24 sm:py-32 bg-[#0A0A0A] noise-texture">
+      <span id="audit" className="absolute -top-20" aria-hidden="true" />
       <div className="relative max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <p className="font-sans text-xs font-medium tracking-[0.08em] uppercase text-[#9A9086] mb-4">
           Pricing
         </p>
         <h2 className="font-display text-[36px] sm:text-[48px] font-bold leading-[0.95] tracking-[0.03em] uppercase text-[#E8E2D8] mb-4">
-          Start with the Blueprint
+          Start with the Audit
         </h2>
         <p className="font-sans text-base font-light tracking-[-0.01em] text-[#9A9086] mb-16 max-w-xl">
-          No retainer before results. No lock-ins. The Blueprint is yours regardless of what comes next.
+          No retainer commitment until we&rsquo;ve shown you the data. The Audit is yours regardless of what comes next. If we can&rsquo;t find $150K in recoverable revenue, you get the $3,500 back.
         </p>
 
         <div className="space-y-0">
@@ -93,7 +103,7 @@ export default function Services() {
         </div>
 
         <p className="mt-10 font-sans text-sm font-light text-[#5A5550]">
-          Using ServiceTitan, Jobber, or HouseCall Pro? We include CRM setup guidance in every plan.
+          Using JobNimbus, Albi, Xcelerate, PSA, or Encircle? We work natively on every restoration stack. Audit first. Retainer second. Never the other way around.
         </p>
       </div>
     </section>

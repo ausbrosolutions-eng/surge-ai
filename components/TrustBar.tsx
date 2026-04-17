@@ -1,11 +1,11 @@
 const platforms = [
-  "Google",
-  "Angi",
-  "ServiceTitan",
-  "Jobber",
-  "Yelp",
-  "HomeAdvisor",
-  "Thumbtack",
+  "JobNimbus",
+  "Encircle",
+  "Albi",
+  "Xcelerate",
+  "Xactimate",
+  "QuickBooks",
+  "XactAnalysis",
 ];
 
 export default function TrustBar() {

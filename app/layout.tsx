@@ -17,34 +17,35 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  title: "Surge Advisory | Revenue Consulting for Home Service Businesses",
+  title: "Surge Advisory | Ops Infrastructure for Restoration Contractors",
   description:
-    "We build revenue blueprints for home service businesses ready to scale. Custom roadmaps, marketing strategy, and growth consulting.",
+    "We help restoration contractors recover stuck revenue, fix documentation gaps, and build the ops infrastructure that scales. 2-week Ops Audit starting at $3,500.",
   keywords: [
-    "home service marketing",
-    "revenue blueprint",
-    "home service business growth",
-    "HVAC marketing",
-    "roofing marketing",
-    "plumbing marketing",
-    "restoration marketing",
-    "local service business scaling",
-    "marketing agency",
+    "restoration ops consulting",
+    "restoration contractor automation",
+    "JobNimbus consultant",
+    "Encircle integration",
+    "Albi restoration CRM",
+    "Xactimate automation",
+    "restoration collections recovery",
+    "supplement workflow automation",
+    "restoration business operations",
+    "fractional CTO restoration",
   ],
   authors: [{ name: "Surge Advisory" }],
   openGraph: {
-    title: "Surge Advisory | Revenue Consulting for Home Service Businesses",
+    title: "Surge Advisory | Ops Infrastructure for Restoration Contractors",
     description:
-      "We build the roadmap. You drive the revenue. Growth blueprints for home service businesses scaling from X to Y.",
+      "Recover stuck revenue. Fix documentation gaps. Scale without adding admin. Built for restoration contractors doing $1M-$15M.",
     type: "website",
     locale: "en_US",
     siteName: "Surge Advisory",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Surge Advisory | Revenue Blueprints for Home Service Businesses",
+    title: "Surge Advisory | Ops Infrastructure for Restoration Contractors",
     description:
-      "We build the roadmap. You drive the revenue.",
+      "Recover stuck revenue. Fix documentation gaps. Scale without adding admin.",
   },
   robots: {
     index: true,
@@ -64,15 +65,15 @@ const jsonLd = {
   "@type": "ProfessionalService",
   name: "Surge Advisory",
   description:
-    "Revenue consulting for home service businesses. Custom growth blueprints, marketing strategy, and implementation support.",
+    "Ops infrastructure and AI automation for restoration contractors. Recover stuck revenue, fix documentation gaps, scale without adding admin.",
   url: "https://surgeadvisory.co",
-  priceRange: "$$",
+  priceRange: "$$$",
   serviceType: [
-    "Revenue Blueprint",
-    "Marketing Consulting",
-    "Home Service Marketing",
-    "Google LSA Management",
-    "Local SEO",
+    "Ops Infrastructure Audit",
+    "Restoration Business Automation",
+    "Claims Workflow Automation",
+    "JobNimbus Consulting",
+    "Fractional CTO Services",
   ],
   areaServed: {
     "@type": "Country",
@@ -84,21 +85,31 @@ const jsonLd = {
     itemListElement: [
       {
         "@type": "Offer",
-        name: "The Blueprint",
-        price: "499",
-        priceCurrency: "USD",
-      },
-      {
-        "@type": "Offer",
-        name: "Done With You",
-        price: "1500",
-        priceCurrency: "USD",
-      },
-      {
-        "@type": "Offer",
-        name: "Done For You",
+        name: "Surge Ops Audit",
         price: "3500",
         priceCurrency: "USD",
+        description: "2-week data audit identifying stuck revenue, documentation gaps, and 90-day implementation roadmap",
+      },
+      {
+        "@type": "Offer",
+        name: "Phase 1: Foundation",
+        price: "6500",
+        priceCurrency: "USD",
+        description: "Months 1-3 implementation retainer",
+      },
+      {
+        "@type": "Offer",
+        name: "Phase 2: Build-Out",
+        price: "5000",
+        priceCurrency: "USD",
+        description: "Months 4-6 implementation retainer",
+      },
+      {
+        "@type": "Offer",
+        name: "Phase 3: Optimization",
+        price: "3500",
+        priceCurrency: "USD",
+        description: "Month 7+ ongoing retainer",
       },
     ],
   },

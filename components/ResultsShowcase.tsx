@@ -5,10 +5,10 @@ import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 
 const stats = [
-  { value: "312%", label: "More Inbound Calls" },
-  { value: "4.1x", label: "Average Client ROI" },
-  { value: "91%", label: "Client Retention Rate" },
-  { value: "48hrs", label: "First Deliverable" },
+  { value: "$1.3M", label: "Stuck Revenue Recovered" },
+  { value: "10-12x", label: "Projected Year 1 ROI" },
+  { value: "15-25%", label: "Of Revenue Typically At Risk" },
+  { value: "14 days", label: "Audit Turnaround" },
 ];
 
 export default function ResultsShowcase() {
@@ -27,7 +27,7 @@ export default function ResultsShowcase() {
           Real Results
         </p>
         <h2 className="font-display text-[36px] sm:text-[48px] font-bold leading-[0.95] tracking-[0.03em] uppercase text-[#E8E2D8] mb-16 max-w-xl">
-          Numbers from real contractors in your trade
+          Numbers from real restoration contractors
         </h2>
         <motion.div
           initial={{ opacity: 0 }}
@@ -47,7 +47,7 @@ export default function ResultsShowcase() {
           ))}
         </motion.div>
         <p className="mt-12 font-sans text-xs font-normal text-[#5A5550] max-w-md">
-          Results are from top-performing clients. Individual results vary based on market, competition, and starting position.
+          Numbers from Rehab Restoration audit (Colorado, $2M annual revenue). Results vary based on business size, CRM, and current state. Projections made from Year 1 recovery scenario analysis.
         </p>
       </div>
     </section>

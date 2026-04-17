@@ -2,19 +2,19 @@ import Image from "next/image";
 
 const problems = [
   {
-    title: "Your phone goes quiet and you don't know why",
+    title: "Your collections queue is a graveyard",
     description:
-      "Last month was great. This month the calls dried up. You're running your business on hope, not a system.",
+      "Invoices from 6 months ago still sitting at 5.0 status. Nobody's working them systematically. You tell yourself you'll get to it. You never do.",
   },
   {
-    title: "You're paying an agency and can't explain what you're getting",
+    title: "Your team is drowning in manual work",
     description:
-      "They send a report with impressions and clicks. Your phone isn't ringing more. You're paying $2,500/mo and your gut says it isn't working.",
+      "Someone is retyping data from WhatsApp into JobNimbus. Someone is downloading files and ZIPping them for RIB and OCS. Someone is building reports in Google Sheets. Every one of those is a systems failure disguised as a staffing problem.",
   },
   {
-    title: "You know you need to grow but don't know the next move",
+    title: "You can't answer basic questions about your business",
     description:
-      "You want to hit $3M. Or $5M. But nobody's ever built you a roadmap for how to actually get there.",
+      "Close rate by rep? Revenue by job type? Average days to collect? You'd need half a day to pull it together. Meanwhile decisions keep getting made on gut instinct.",
   },
 ];
 
@@ -28,7 +28,7 @@ export default function ProblemSection() {
               Sound Familiar?
             </p>
             <h2 className="font-display text-[36px] sm:text-[48px] font-bold leading-[0.95] tracking-[0.03em] uppercase text-[#E8E2D8] mb-12">
-              Every contractor we work with had at least two of these
+              Every restoration contractor we audit has at least two of these
             </h2>
             <div className="space-y-10">
               {problems.map((problem) => (

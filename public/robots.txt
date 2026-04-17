@@ -1,0 +1,22 @@
+# Surge Advisory robots.txt
+# Public marketing pages: indexed
+# Internal platform routes: disallowed
+
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /how-it-works
+Allow: /pricing
+Allow: /faq
+
+# Internal routes (require authentication)
+Disallow: /surge
+Disallow: /surge/*
+Disallow: /platform
+Disallow: /platform/*
+Disallow: /dashboard
+Disallow: /dashboard/*
+Disallow: /auth
+Disallow: /api/auth
+
+Sitemap: https://surgeadvisory.co/sitemap.xml

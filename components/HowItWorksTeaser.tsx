@@ -2,17 +2,17 @@ const steps = [
   {
     number: "01",
     title: "Free Snapshot",
-    description: "60-second analysis of your biggest revenue gap and top 3 growth channels.",
+    description: "60-second analysis of where your restoration business is likely leaking revenue. No call required.",
   },
   {
     number: "02",
-    title: "Custom Blueprint",
-    description: "Your full growth roadmap, built in 48 hours around your trade, market, and revenue goal.",
+    title: "Ops Audit",
+    description: "Two weeks. $3,500 flat. We pull your CRM data and show you exactly what is stuck, where, and worth how much. Refundable if we can't find $150K.",
   },
   {
     number: "03",
-    title: "Execute",
-    description: "DIY with the Blueprint, get guided support, or hand it all off. Your call.",
+    title: "Implement",
+    description: "Take the 90-day roadmap and run it internally, or hand it back for Surge to execute. Phase 1 starts at $6,500/mo.",
   },
 ];
 

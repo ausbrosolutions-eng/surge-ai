@@ -5,6 +5,15 @@ This file is the core knowledge base for this marketing agency project. You are 
 
 ---
 
+## Specialized Knowledge Modules
+
+For client engagements that go beyond marketing into sales, operations, or enablement, load the relevant rules file:
+
+- **Sales, Enablement & RevOps** — `.claude/rules/sales-enablement-revops.md`
+  Universal playbook for SPIN selling, PACI discovery, email cadences, account tiering, trigger-based prospecting, champion development, pipeline discipline, the 5-layer enablement flywheel (capture > intelligence > practice > knowledge > execution), and RevOps automation principles. Apply when designing client sales processes, building outreach systems, training their team, or setting up their CRM/enablement stack. Adapted from Cherry's fintech enablement playbook for Surge Advisory's agency work.
+
+---
+
 ## WHO WE SERVE
 
 **Niche:** Home service businesses — HVAC, plumbing, electrical, roofing, landscaping, pest control, cleaning, painting, garage doors, gutters, windows, and related trades.
@@ -634,7 +643,126 @@ The businesses winning in 2025–2026 have: complete entity data everywhere, con
 
 ---
 
-# Developer Reference — Surge AI Codebase
+---
+
+# ClaimRelay -- Property Insurance Claims Intelligence
+
+## What ClaimRelay Is
+A SaaS dashboard where restoration contractors track every insurance claim from first notice of loss to final payment. Upload Xactimate estimates, get AI-flagged supplement gaps, track status across all carriers, know where every dollar is. The Stedi of property insurance -- a single platform normalizing the fragmented communication between restoration contractors (providers) and insurance carriers (payers).
+
+**Target user:** Restoration company office managers, project managers, and owners juggling 10-50+ open claims across multiple carriers using spreadsheets, email threads, and memory.
+
+**Core value prop:** "Stop losing money on every job. ClaimRelay catches the line items adjusters miss and tracks every dollar owed to you."
+
+## The Claims Process (Quick Reference)
+
+**Who files:** The homeowner always files the FNOL (First Notice of Loss). Contractors get involved AFTER the claim is filed. Contractors do NOT file claims -- doing so may constitute unauthorized practice of public adjusting.
+
+**Payment flow:** Two-check system. Check 1 (ACV = replacement cost minus depreciation minus deductible) comes after estimate approval. Check 2 (recoverable depreciation) comes after repairs are completed and documented. If mortgaged, both checks require mortgage company endorsement.
+
+**The supplement cycle is where contractors lose money.** Professional supplement teams increase approved amounts by 30%+. Each round adds 3-12 days of paperwork. Total supplement cycle: 30-90+ days. Documentation gaps are the #1 reason supplements get denied.
+
+## Key Industry Numbers
+
+| Metric | Value |
+|--------|-------|
+| Avg contractor wait for payment | 83 days |
+| Avg FNOL to final payment | 44+ days (longest since 2008) |
+| Avg adjuster open caseload | 110-140 claims |
+| Claims leakage (carrier cost) | 5-10% of total claims |
+| Supplement increase over initial estimate | 30%+ |
+| Insurance workforce vacancies by 2026 | 400,000+ |
+| Adjusters retiring within 5 years | 25% |
+| Digital submission processing reduction | ~46% |
+| Customer satisfaction when communication easy | 2x higher (777 vs 337 J.D. Power) |
+| U.S. restoration industry revenue | $7.1B |
+| Average homeowners claim | ~$17,000 |
+| Average restoration job | ~$12,000 |
+
+## Carrier Intelligence (Top 10)
+
+**Estimating software:** Every carrier uses Xactimate EXCEPT Farmers (transitioning to Symbility -- 30%+ lower unit pricing).
+
+**Supplement difficulty ranking:**
+1. USAA (hardest) -- XactAnalysis notes + photos required; must approve BEFORE work
+2. State Farm (hard) -- adjusters resist supplements; aggressive cost containment
+3. Allstate (moderate-hard) -- photo-based estimates miss damage; slow review
+4. Farmers (moderate-hard) -- Symbility transition creates confusion
+5. Travelers (moderate) -- Westhill workflow: 68% no-supplement rate
+6. Liberty Mutual (moderate) -- dedicated supplement portal
+7. Progressive (moderate) -- direct adjuster negotiation
+8. Nationwide (moderate) -- flows through Accuserve TPA
+9. American Family (moderate) -- standard but slow
+10. Erie (easiest) -- collaborative, contractor-friendly
+
+**Key portals:**
+- State Farm: b2b.statefarm.com
+- Allstate: propghrnconsumertool.allstate.com (Good Hands Repair Network)
+- USAA: usaa.providerterminal.com + XactAnalysis
+- Liberty Mutual: claiminfoportalapps.libertymutual.com + supplements.libertymutual.com
+- Nationwide: Through Accuserve (accuserve.com/contractor)
+- Travelers: Through Westhill Global
+- Erie: Through Contractor Connection (contractorconnection.com)
+
+**Major MRP administrators:**
+- Contractor Connection (Crawford) -- 6,000+ contractors, serves Erie/USAA
+- Accuserve -- serves Nationwide/USAA
+- Westhill Global -- serves Travelers, 10,000+ contractors
+
+**Major TPAs:** Crawford, Sedgwick (100+ carrier clients, $5B+ managed premium), McLarens
+
+## Key Terminology
+
+| Term | Meaning |
+|------|---------|
+| FNOL | First Notice of Loss -- initial claim report from policyholder |
+| ACV | Actual Cash Value -- replacement cost minus depreciation |
+| RCV | Replacement Cost Value -- full repair cost, like kind and quality |
+| Depreciation | Value reduction by age/wear. 10yr roof / 20yr life = 50% depreciated |
+| Recoverable Depreciation | Holdback between ACV and RCV. Released after repairs documented |
+| Supplement | Formal request to increase original payment. Standard practice |
+| Scope of Loss | Itemized damage, materials, labor document from adjuster |
+| Xactimate | Verisk's estimating software. Used by 22/25 top carriers and 80% of contractors |
+| Symbility | CoreLogic's estimating platform. Farmers transitioning to it |
+| O&P | Overhead & Profit. Standard 20% (10+10) for GC. Carriers dispute using "3 trade rule" |
+| AOB | Assignment of Benefits -- transfers claim rights to contractor. State-dependent |
+| Direction to Pay | Homeowner instructs carrier to put contractor on check. No rights transfer |
+| Loss Draft | Mortgage company dept that endorses/disburses insurance checks |
+| TPA | Third-Party Administrator -- manages claims for carriers |
+| MRP/PVP/DRP | Managed Repair / Preferred Vendor / Direct Repair Programs |
+
+## Technology Landscape
+
+**No platform currently bridges the communication gap.** Existing tools are siloed:
+- **Estimating:** Xactimate (Verisk), Symbility (CoreLogic)
+- **Carrier workflow:** XactAnalysis, Claims Connect
+- **Field documentation:** CompanyCam, Encircle, DocuSketch, magicplan, Hover
+
+The gap between these silos is where claims die slowly. That gap is ClaimRelay's market.
+
+**Critical constraint:** Any platform must integrate with Xactimate, not compete with it. Verisk owns 80%+ market share.
+
+## State-Mandated Response Timelines
+
+| State | Acknowledge | Accept/Deny | Pay After Acceptance |
+|-------|------------|-------------|---------------------|
+| Texas | 15 biz days | 15 biz days | 5 biz days |
+| California | 15 days | 40 days | 30 days |
+| Florida | 14 calendar days | 90 days | Per settlement |
+| North Carolina | 30 days | 30 days | 10 biz days |
+| Arizona | 10 working days | 15 working days | Per agreement |
+
+## Research Files
+
+Detailed research lives in `/docs/research/`:
+- `home-insurance-claims-master-research.md` -- Complete synthesis (this is the motherlode)
+- `claims-pain-points-market-data.md` -- Pain points and market statistics
+- `top-10-carrier-claims-intelligence.md` -- Carrier-by-carrier playbook with portals, quirks, supplement strategies
+- `insurance-claims-process-complete.md` -- Earlier research compilation
+
+---
+
+# Developer Reference -- Surge AI Codebase
 
 ## What This Repo Is
 A Next.js 14 App Router application serving two purposes:
