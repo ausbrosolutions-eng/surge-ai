@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
@@ -5,10 +6,29 @@ import { Button } from "@/components/ui/Button";
 export function Hero() {
   return (
     <section className="relative pt-32 pb-section md:pt-48 md:pb-section-lg overflow-hidden">
-      {/* Atmospheric copper glow */}
+      {/* Cinematic background scene */}
+      <Image
+        src="/imagery/01-hero.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        aria-hidden
+        className="object-cover object-right opacity-[0.35] pointer-events-none"
+      />
+      {/* Darkening gradient over image */}
       <div
         aria-hidden
-        className="absolute inset-0 opacity-100 pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to right, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.4) 100%)",
+        }}
+      />
+      {/* Atmospheric copper glow on top */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
         style={{
           background:
             "radial-gradient(ellipse at 75% 15%, rgba(184,115,51,0.08) 0%, rgba(10,10,10,0) 60%)",

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
@@ -46,6 +47,25 @@ export function MarketingFeatured() {
               </p>
             </div>
           ))}
+        </div>
+
+        {/* Cinematic supporting image: pool service technician with branded truck */}
+        <div className="mt-16 relative aspect-[16/9] w-full overflow-hidden rounded-sm">
+          <Image
+            src="/imagery/04-marketing.jpg"
+            alt="Pool service technician walking to a residential pool with a branded service truck visible in the driveway"
+            fill
+            sizes="(max-width: 768px) 100vw, 1200px"
+            className="object-cover"
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0) 50%)",
+            }}
+          />
         </div>
 
         <div className="mt-16">

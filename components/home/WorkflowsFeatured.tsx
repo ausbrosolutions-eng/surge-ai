@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
@@ -46,6 +47,25 @@ export function WorkflowsFeatured() {
               </p>
             </div>
           ))}
+        </div>
+
+        {/* Cinematic supporting image: roofer with tablet, Phoenix skyline */}
+        <div className="mt-16 relative aspect-[16/9] w-full overflow-hidden rounded-sm">
+          <Image
+            src="/imagery/03-workflows.jpg"
+            alt="Home service technician using an AI-drafted estimate workflow on a tablet, on a residential roof in Phoenix at sunset"
+            fill
+            sizes="(max-width: 768px) 100vw, 1200px"
+            className="object-cover"
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0) 50%)",
+            }}
+          />
         </div>
 
         <div className="mt-16">

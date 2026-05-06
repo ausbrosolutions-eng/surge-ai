@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
@@ -40,7 +41,26 @@ export function Engagements() {
           Who we work with.
         </h2>
 
-        <div className="mt-16 grid md:grid-cols-2 gap-6 md:gap-10">
+        {/* Cinematic supporting image: restoration tech in water-damaged interior */}
+        <div className="mt-16 relative aspect-[16/9] w-full overflow-hidden rounded-sm">
+          <Image
+            src="/imagery/05-engagements.jpg"
+            alt="Restoration technician in PPE examining water-damaged drywall in a residential interior"
+            fill
+            sizes="(max-width: 768px) 100vw, 1200px"
+            className="object-cover"
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0) 50%)",
+            }}
+          />
+        </div>
+
+        <div className="mt-12 grid md:grid-cols-2 gap-6 md:gap-10">
           <EngagementCard
             client="BLACK WOLF ROOFING"
             location="PHOENIX AZ"

@@ -1,9 +1,29 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 
 export function FinalCTA() {
   return (
     <section className="relative py-section md:py-section-lg overflow-hidden">
+      {/* Subtle background scene: hands typing into intake form */}
+      <Image
+        src="/imagery/06-final-cta.jpg"
+        alt=""
+        fill
+        sizes="100vw"
+        aria-hidden
+        className="object-cover object-center opacity-[0.18] pointer-events-none"
+      />
+      {/* Darkening overlay so type stays readable */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.6) 50%, rgba(10,10,10,0.85) 100%)",
+        }}
+      />
+      {/* Atmospheric copper glow on top */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
