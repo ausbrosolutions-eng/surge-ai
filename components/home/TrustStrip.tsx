@@ -4,7 +4,7 @@ const TOOLS = ["JOBBER", "SERVICETITAN", "HOUSECALL PRO"];
 
 export function TrustStrip() {
   return (
-    <section className="bg-surface/40 border-y border-white/[0.04] py-6">
+    <section className="bg-surface border-y border-white/[0.04] py-6">
       <Container>
         <div className="flex flex-wrap items-center gap-x-12 gap-y-3 justify-center md:justify-between">
           <span className="font-mono uppercase tracking-[0.16em] text-[11px] text-ink-secondary">

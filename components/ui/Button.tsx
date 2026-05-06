@@ -17,7 +17,7 @@ const VARIANT_CLASSES: Record<ButtonVariant, string> = {
   secondary:
     "text-ink-secondary text-sm hover:text-copper transition-colors",
   tertiary:
-    "border border-surface text-ink-primary font-mono uppercase tracking-[0.04em] text-xs px-4 py-2 rounded-sm hover:border-copper hover:text-copper transition-colors",
+    "border border-copper text-ink-primary font-mono uppercase tracking-[0.04em] text-xs px-4 py-2 rounded-sm hover:border-copper-dark hover:text-copper transition-colors",
 };
 
 export function Button({

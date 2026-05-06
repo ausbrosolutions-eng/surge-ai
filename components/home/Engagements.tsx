@@ -17,8 +17,8 @@ function EngagementCard({ client, location, body }: EngagementProps) {
         {client}
       </div>
       <div className="mt-6 space-y-4">
-        {body.map((line, i) => (
-          <p key={i} className="text-base text-ink-secondary leading-relaxed">
+        {body.map((line) => (
+          <p key={line} className="text-base text-ink-secondary leading-relaxed">
             {line}
           </p>
         ))}

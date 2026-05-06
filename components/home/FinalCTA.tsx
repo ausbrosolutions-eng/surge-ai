@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/Button";
 
 export function FinalCTA() {
   return (
-    <section className="relative py-section-lg md:py-section-lg overflow-hidden">
+    <section className="relative py-section md:py-section-lg overflow-hidden">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
