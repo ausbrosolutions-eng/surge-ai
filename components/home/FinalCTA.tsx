@@ -43,10 +43,16 @@ export function FinalCTA() {
         </p>
 
         <div className="mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6 sm:items-center sm:justify-center">
-          <Button href="/snapshot" variant="primary">
+          <Button
+            href="mailto:austin@surgeadvisory.co?subject=Surge%20Snapshot%20Request&body=Hi%20Austin%2C%0A%0AI%27d%20like%20a%20Surge%20Snapshot%20for%20my%20home%20service%20business.%0A%0A-%20Business%20name%3A%20%0A-%20Trade%3A%20%0A-%20Website%3A%20%0A-%20Biggest%20operational%20pain%3A%20%0A%0AThanks"
+            variant="primary"
+          >
             Get your free Snapshot &rarr;
           </Button>
-          <Button href="/snapshot#book" variant="secondary">
+          <Button
+            href="mailto:austin@surgeadvisory.co?subject=Surge%20Strategy%20Call&body=Hi%20Austin%2C%0A%0AI%27d%20like%20to%20book%20a%2030-min%20call%20about%20my%20home%20service%20business.%0A%0A-%20Business%20name%3A%20%0A-%20Trade%3A%20%0A-%20Best%20times%3A%20%0A%0AThanks"
+            variant="secondary"
+          >
             Or book a 30-min call &rarr;
           </Button>
         </div>

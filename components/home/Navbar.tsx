@@ -56,7 +56,10 @@ export function Navbar() {
                   </li>
                 ))}
               </ul>
-              <Button href="/snapshot" variant="tertiary">
+              <Button
+                href="mailto:austin@surgeadvisory.co?subject=Surge%20Snapshot%20Request&body=Hi%20Austin%2C%0A%0AI%27d%20like%20a%20Surge%20Snapshot%20for%20my%20home%20service%20business.%0A%0A-%20Business%20name%3A%20%0A-%20Trade%3A%20%0A-%20Website%3A%20%0A-%20Biggest%20operational%20pain%3A%20%0A%0AThanks"
+                variant="tertiary"
+              >
                 GET SNAPSHOT &rarr;
               </Button>
             </div>
@@ -101,7 +104,10 @@ export function Navbar() {
               ))}
             </ul>
             <div className="mt-12">
-              <Button href="/snapshot" variant="primary">
+              <Button
+                href="mailto:austin@surgeadvisory.co?subject=Surge%20Snapshot%20Request&body=Hi%20Austin%2C%0A%0AI%27d%20like%20a%20Surge%20Snapshot%20for%20my%20home%20service%20business.%0A%0A-%20Business%20name%3A%20%0A-%20Trade%3A%20%0A-%20Website%3A%20%0A-%20Biggest%20operational%20pain%3A%20%0A%0AThanks"
+                variant="primary"
+              >
                 Get your free Snapshot &rarr;
               </Button>
             </div>
