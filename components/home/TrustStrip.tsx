@@ -1,6 +1,6 @@
 import { Container } from "@/components/ui/Container";
 
-const TOOLS = ["JOBBER", "SERVICETITAN", "HOUSECALL PRO"];
+const TOOLS = ["JOBBER", "HOUSECALL PRO", "FIELDEDGE"];
 
 export function TrustStrip() {
   return (

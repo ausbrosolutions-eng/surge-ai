@@ -5,24 +5,20 @@ import { Button } from "@/components/ui/Button";
 
 const SERVICES = [
   {
-    label: "LOCAL SEO",
-    body: "Service area pages, schema, citations, technical foundation.",
-  },
-  {
     label: "GOOGLE BUSINESS PROFILE",
-    body: "Posts, photos, Q&A, review cadence. Daily presence, weekly rank gains.",
+    body: "Posts, photos, questions and answers, review cadence. Daily presence, weekly rank gains.",
   },
   {
     label: "AI SEARCH OPTIMIZATION",
-    body: "ChatGPT, Copilot, Google AI Overviews. The searches Google can't show you in Search Console.",
+    body: "ChatGPT, Copilot, Google AI Overviews. The searches Google cannot show you in Search Console.",
   },
   {
     label: "REVIEW SYSTEMS",
-    body: "SMS-triggered review requests, response automation, reputation monitoring.",
+    body: "Text-triggered review requests, response automation, reputation monitoring.",
   },
   {
     label: "ATTRIBUTION",
-    body: "CallRail, GA4, ad-spend-to-job tracking. Every dollar in maps to a dollar out.",
+    body: "Call tracking, Google Analytics, ad-spend-to-job tracking. Every dollar in maps to a dollar out.",
   },
 ];
 

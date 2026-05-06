@@ -44,14 +44,14 @@ export function Modules() {
           <ModuleCard
             number="01"
             label="WORKFLOW BUILDS"
-            headline="AI agents inside Jobber, ServiceTitan, HouseCall Pro."
+            headline="AI agents inside the tools your team already uses."
             body="Estimate drafting, follow-up cadences, quality scoring, daily reports, lead intake. The repetitive work, automated."
             href="/workflows"
           />
           <ModuleCard
             number="02"
             label="MARKETING INFRASTRUCTURE"
-            headline="Local SEO, GBP, AI search, reviews, attribution."
+            headline="Google Business Profile, AI search, reviews, attribution."
             body="Findable on Google, ChatGPT, and Copilot. Reviews flowing. Every dollar attributed. Your phone rings."
             href="/marketing"
           />

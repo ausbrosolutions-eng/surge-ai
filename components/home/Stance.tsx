@@ -3,8 +3,8 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 
 const PILLARS = [
   {
-    label: "CLOUD-TO-DIRT FLUENCY",
-    body: "Most agencies have strategy or execution, not both. Surge writes the SOW and configures ServiceTitan in the same session.",
+    label: "STRATEGY AND EXECUTION",
+    body: "Most agencies hand you a strategy deck and disappear. Surge ships the workflows behind the strategy. Same hands, same session.",
   },
   {
     label: "PRODUCTIZED METHODOLOGY",

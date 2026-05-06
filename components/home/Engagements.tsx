@@ -45,7 +45,7 @@ export function Engagements() {
         <div className="mt-16 relative aspect-[16/9] w-full overflow-hidden rounded-sm">
           <Image
             src="/imagery/05-engagements.jpg"
-            alt="Restoration technician in PPE examining water-damaged drywall in a residential interior"
+            alt="Restoration technician in protective gear examining water-damaged drywall in a residential interior"
             fill
             sizes="(max-width: 768px) 100vw, 1200px"
             className="object-cover"
@@ -66,7 +66,7 @@ export function Engagements() {
             location="PHOENIX AZ"
             body={[
               "Workflow builds: office manager freed of 5 to 8 hours per week of repetitive admin.",
-              "Marketing infrastructure: local SEO, GBP, AI search visibility. Driving more inbound traffic and rank gains.",
+              "Marketing infrastructure: Google Business Profile and AI search visibility. Driving more inbound traffic and rank gains.",
             ]}
           />
           <EngagementCard
