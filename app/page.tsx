@@ -1,31 +1,33 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import TrustBar from "@/components/TrustBar";
-import ProblemSection from "@/components/ProblemSection";
-import ResultsShowcase from "@/components/ResultsShowcase";
-import HowItWorksTeaser from "@/components/HowItWorksTeaser";
-import Services from "@/components/Services";
-import SocialProof from "@/components/SocialProof";
-import GuaranteeSection from "@/components/GuaranteeSection";
-import FinalCTA from "@/components/FinalCTA";
-import Footer from "@/components/Footer";
-import StickyMobileCTA from "@/components/StickyMobileCTA";
+import { Navbar } from "@/components/home/Navbar";
+import { Hero } from "@/components/home/Hero";
+import { TrustStrip } from "@/components/home/TrustStrip";
+import { Problem } from "@/components/home/Problem";
+import { Modules } from "@/components/home/Modules";
+import { WorkflowsFeatured } from "@/components/home/WorkflowsFeatured";
+import { MarketingFeatured } from "@/components/home/MarketingFeatured";
+import { Method } from "@/components/home/Method";
+import { Engagements } from "@/components/home/Engagements";
+import { Stance } from "@/components/home/Stance";
+import { FinalCTA } from "@/components/home/FinalCTA";
+import { Footer } from "@/components/home/Footer";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#0A0A0A]">
+    <>
       <Navbar />
-      <Hero />
-      <TrustBar />
-      <ProblemSection />
-      <ResultsShowcase />
-      <HowItWorksTeaser />
-      <Services />
-      <SocialProof />
-      <GuaranteeSection />
-      <FinalCTA />
+      <main>
+        <Hero />
+        <TrustStrip />
+        <Problem />
+        <Modules />
+        <WorkflowsFeatured />
+        <MarketingFeatured />
+        <Method />
+        <Engagements />
+        <Stance />
+        <FinalCTA />
+      </main>
       <Footer />
-      <StickyMobileCTA />
-    </main>
+    </>
   );
 }
