@@ -10,22 +10,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        dark: {
-          DEFAULT: "#0A0A0A",
-          surface: "#111111",
-          card: "#1A1A1A",
-          border: "#2A2520",
+        // Canonical Surge palette
+        page: "#0A0A0A",          // matte black, default page background
+        surface: {
+          DEFAULT: "#2A3439",     // gun metal, primary surface
+          light: "#3B444B",       // gun metal light, hover/elevated
         },
         copper: {
           DEFAULT: "#B87333",
-          light: "#D4956A",
-          dark: "#8B5E3C",
+          dark: "#8B5A26",
+          tint: "#FFF8F0",
         },
-        warm: {
-          white: "#E8E2D8",
-          gray: "#9A9086",
-          muted: "#5A5550",
+        ink: {
+          primary: "#FFFFFF",
+          secondary: "#9A9086",   // warm gray, subheads/metadata
+          tertiary: "#6B7280",    // cool gray, de-emphasized
         },
+        light: "#F5F1ED",         // warm off-white, light contexts
+        // Legacy tokens kept for shadcn/ui compatibility
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -60,27 +62,39 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      fontFamily: {
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-inter)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+      },
+      fontSize: {
+        "display-xl": ["80px", { lineHeight: "0.96", letterSpacing: "-0.04em", fontWeight: "700" }],
+        "display-lg": ["60px", { lineHeight: "1.0", letterSpacing: "-0.03em", fontWeight: "700" }],
+        "display-md": ["32px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "600" }],
+        "display-sm": ["24px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "600" }],
+        "label": ["11px", { lineHeight: "1.4", letterSpacing: "0.16em", fontWeight: "500" }],
+      },
+      spacing: {
+        "section": "96px",
+        "section-lg": "128px",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-barlow)", "system-ui", "sans-serif"],
-      },
       animation: {
-        "fade-in": "fadeIn 0.6s ease-out",
+        "fade-up": "fade-up 600ms ease-out",
       },
       keyframes: {
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(16px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
 
 export default config;
